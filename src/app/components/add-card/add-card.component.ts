@@ -13,6 +13,7 @@ import * as DOMPurify from 'dompurify';
 import { UtilityService } from 'src/app/utility.service';
 import { TaskService } from 'src/app/task.service';
 import { ConstantsService } from 'src/app/constants.service';
+import { Task } from 'src/app/Task';
 
 @Component({
   selector: 'app-add-card',
@@ -29,6 +30,9 @@ export class AddCardComponent implements OnInit {
   ngOnInit(): void {}
 
   @ViewChild('newTaskInput') newTaskInput!: ElementRef;
+  @Input() task!: Task;
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+
   name: string = '';
   id: number = 0;
   done: boolean = false;
@@ -71,5 +75,9 @@ export class AddCardComponent implements OnInit {
   resetInput() {
     this.utilityService.show = false;
     this.newTask = '';
+  }
+
+  onDelete(task: Task) {
+    this.onDeleteTask.emit(task);
   }
 }

@@ -1,5 +1,4 @@
 <app-create-button (createButtonClick)="showInput()"></app-create-button>
-
 <div *ngIf="utilityService.show">
   <input [(ngModel)]="newTask" #newTaskInput />
   <button (click)="addTaskToTaskList()" id="addTaskButton">Add Task</button>
@@ -28,6 +27,7 @@
       [attr.data-job]="constantsService.DELETE_TODO"
       [id]="task.id"
       [ngStyle]="{ display: 'inline-block' }"
+      (click)="onDelete(task)"
     />
   </li>
 </ul>
