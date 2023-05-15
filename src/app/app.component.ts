@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, NgForm} from '@angular/forms';
+import { ConstantsService } from 'src/app/services/constants.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  APP_TITLE : string = 'Add Tasks';
+  constructor(public constantsService: ConstantsService) {}
 }

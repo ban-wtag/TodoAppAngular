@@ -1,16 +1,16 @@
-<app-create-button (createButtonClick)="showInput()"></app-create-button>
+<app-create-button (createButtonClick)="onShowInput()"></app-create-button>
 
 <div *ngIf="utilityService.show">
-  <input [(ngModel)]="newTask" #newTaskInput />
-  <button (click)="addTaskToTaskList()" id="addTaskButton">Add Task</button>
-  <button (click)="resetInput()">
-    <i class="fas fa-trash-alt" style="color: rgba(109, 107, 107, 0.835)"></i>
+  <input [(ngModel)]="newTask" appNewTaskInput />
+  <button (click)="onAddTaskToTaskList()" id="addTaskButton">Add Task</button>
+  <button (click)="onResetInput()">
+    <i class="fas fa-trash-alt"></i>
   </button>
 </div>
 <ul>
   <li class="item" *ngFor="let task of taskService.taskList">
-    <p class="text">{{ task.name }}</p>
-    <div class="date" id="{{ task.id }}">Created At: {{ formattedDate }}</div>
+    <p class="text" innerText="{{ task.name }}"></p>
+    <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
     <img
       src="assets/icons/done.svg"
       [attr.data-job]="constantsService.COMPLETE"

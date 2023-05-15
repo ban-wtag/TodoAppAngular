@@ -7,6 +7,7 @@ export class ConstantsService {
   COMPLETE = 'complete';
   EDIT = 'edit';
   DELETE_TODO = 'delete';
+  APP_TITLE = 'Add Tasks';
 
   constructor() {}
 }
