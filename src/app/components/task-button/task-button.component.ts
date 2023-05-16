@@ -59,4 +59,7 @@ export class TaskButtonComponent implements OnInit {
       { display: 'inline-block' }
     );
   }
+  onTaskButtonClick(button: any){
+    console.log("clicked or not");
+  }
 }

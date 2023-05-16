@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-<app-create-button (createButtonClick)="showInput()"></app-create-button>
-=======
 <app-create-button (createButtonClick)="onShowInput()"></app-create-button>
-
->>>>>>> step2-add-functionality-to-add-tasks
 <div *ngIf="utilityService.show">
   <input [(ngModel)]="newTask" appNewTaskInput />
   <button (click)="onAddTaskToTaskList()" id="addTaskButton">Add Task</button>
@@ -13,32 +8,8 @@
 </div>
 <ul>
   <li class="item" *ngFor="let task of taskService.taskList">
-<<<<<<< HEAD
-    <p class="text">{{ task.name }}</p>
-    <div class="date" id="{{ task.id }}">Created At: {{ formattedDate }}</div>
-    <img
-      src="assets/icons/done.svg"
-      [attr.data-job]="constantsService.COMPLETE"
-      [id]="task.id"
-      [ngStyle]="{ display: 'inline-block' }"
-    />
-    <img
-      src="assets/icons/edit.svg"
-      [attr.data-job]="constantsService.EDIT"
-      [id]="task.id"
-      [ngStyle]="{ display: 'inline-block' }"
-    />
-    <img
-      src="assets/icons/delete.svg"
-      [attr.data-job]="constantsService.DELETE_TODO"
-      [id]="task.id"
-      [ngStyle]="{ display: 'inline-block' }"
-      (click)="onDelete(task)"
-    />
-=======
     <p class="text" innerText="{{ task.name }}"></p>
     <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
     <app-task-button [id]="task.id"></app-task-button>
->>>>>>> step2-add-functionality-to-add-tasks
   </li>
 </ul>

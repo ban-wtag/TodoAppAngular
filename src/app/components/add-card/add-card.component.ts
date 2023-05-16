@@ -16,31 +16,16 @@ import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directi
 })
 
 export class AddCardComponent implements OnDestroy {
-  utilityService: UtilityService;
-  taskService: TaskService;
-  constantsService: ConstantsService;
+
   constructor(
-    utilityService: UtilityService,
-    taskService: TaskService,
-    constantsService: ConstantsService
-  ) {
-    this.utilityService = utilityService;
-    this.taskService = taskService;
-    this.constantsService = constantsService;
-  }
+   public utilityService: UtilityService,
+   public taskService: TaskService,
+   public constantsService: ConstantsService
+  ) {}
 
-  @ViewChild(NewTaskInputDirective)
-  newTaskInputDirective!: NewTaskInputDirective;
+  @ViewChild(NewTaskInputDirective) newTaskInputDirective!: NewTaskInputDirective;
 
-  @ViewChild('newTaskInput') newTaskInput!: ElementRef;
-  name = '';
-  id = 0;
-  done = false;
-  edit = false;
-  trash = false;
-  lastId = 0;
-  startDate: number = Date.now();
-
+  task: Task = new Task();
   newTask = '';
   tasks: string[] = [];
   TODAY: Date = new Date();
@@ -89,5 +74,9 @@ export class AddCardComponent implements OnDestroy {
   onResetInput() {
     this.utilityService.show = false;
     this.newTask = '';
+  }
+
+  ngOnDestroy(): void {
+    this.clearTimeout();
   }
 }

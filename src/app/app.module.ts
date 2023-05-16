@@ -6,14 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateButtonComponent } from './components/create-button/create-button.component';
 import { AddCardComponent } from './components/add-card/add-card.component';
+import { TaskButtonComponent } from './components/task-button/task-button.component';
 
 import { ConstantsService } from 'src/app/services/constants.service';
 import { TaskService } from 'src/app/services/task.service';
 import { UtilityService } from 'src/app/services/utility.service';
 
 
+
 @NgModule({
-  declarations: [AppComponent, CreateButtonComponent, AddCardComponent],
+  declarations: [AppComponent, CreateButtonComponent, AddCardComponent, TaskButtonComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
   providers: [ConstantsService, TaskService, UtilityService],
   bootstrap: [AppComponent],
