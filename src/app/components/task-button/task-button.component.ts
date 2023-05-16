@@ -7,6 +7,7 @@ import { TaskService } from 'src/app/services/task.service';
   templateUrl: './task-button.component.html',
   styleUrls: ['./task-button.component.css'],
 })
+
 export class TaskButtonComponent implements OnInit {
   @Input() id!: number;
   buttons: {
@@ -16,10 +17,12 @@ export class TaskButtonComponent implements OnInit {
     id: number;
     ngstyle: any;
   }[] = [];
+
   constructor(
     public constantsService: ConstantsService,
     public taskService: TaskService
   ) {}
+
   ngOnInit(): void {
     this.addNewTaskButton();
   }

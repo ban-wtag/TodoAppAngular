@@ -5,20 +5,23 @@
     {
       "files": ["*.ts"],
       "extends": [
+        "plugin:import/warnings",
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:prettier/recommended"
       ],
-      "plugins": ["prettier"],
+      "plugins": ["import", "prettier"],
       "rules": {
+        "import/newline-after-import": ["error", { "count": 1 }],
         "padding-line-between-statements": [
           "error",
-          { "blankLine": "always", "prev": "*", "next": "export" }
+          { "blankLine": "always", "prev": "*", "next": "export" },
+          { "blankLine": "always", "prev": "export", "next": "*" }
         ],
         "prettier/prettier": "error",
-        // "linebreak-style": ["error", "unix"],
+        "linebreak-style": ["error", "unix"],
         "@angular-eslint/directive-selector": [
           "error",
           {

@@ -7,5 +7,20 @@
   "proseWrap": "preserve",
   "htmlWhitespaceSensitivity": "ignore",
   "vueIndentScriptAndStyle": false,
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "insertFinalNewline": true,
+  "overrides": [
+    {
+      "files": "*.ts",
+      "options": {
+        "endOfLine": "lf"
+      }
+    },
+    {
+      "files": "*.component.ts",
+      "options": {
+        "endOfLine": "lf"
+      }
+    }
+  ]
 }
