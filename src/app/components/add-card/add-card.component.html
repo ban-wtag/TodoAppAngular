@@ -1,4 +1,5 @@
 <app-create-button (createButtonClick)="onShowInput()"></app-create-button>
+
 <div *ngIf="utilityService.show">
   <input [(ngModel)]="newTask" appNewTaskInput />
   <button (click)="onAddTaskToTaskList()" id="addTaskButton">Add Task</button>
@@ -10,6 +11,6 @@
   <li class="item" *ngFor="let task of taskService.taskList">
     <p class="text" innerText="{{ task.name }}"></p>
     <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
-    <app-task-button [id]="task.id"></app-task-button>
+    <app-task-button [id]="task.id" (taskButtonClick)="onTaskButtonClick($event)"></app-task-button>
   </li>
 </ul>

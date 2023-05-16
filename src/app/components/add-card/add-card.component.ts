@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { formatDate } from '@angular/common';
 import * as DOMPurify from 'dompurify';
 
@@ -16,12 +16,18 @@ import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directi
 })
 
 export class AddCardComponent implements OnDestroy {
-
+  utilityService: UtilityService;
+  taskService: TaskService;
+  constantsService: ConstantsService;
   constructor(
-   public utilityService: UtilityService,
-   public taskService: TaskService,
-   public constantsService: ConstantsService
-  ) {}
+    utilityService: UtilityService,
+    taskService: TaskService,
+    constantsService: ConstantsService
+  ) {
+    this.utilityService = utilityService;
+    this.taskService = taskService;
+    this.constantsService = constantsService;
+  }
 
   @ViewChild(NewTaskInputDirective) newTaskInputDirective!: NewTaskInputDirective;
 
@@ -74,6 +80,17 @@ export class AddCardComponent implements OnDestroy {
   onResetInput() {
     this.utilityService.show = false;
     this.newTask = '';
+  }
+
+  onTaskButtonClick(event: {id: number, dataJob: string}): void {
+    const id = event.id;
+    const dataJob = event.dataJob;
+    const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
+    if (taskIndex !== -1 && dataJob === this.constantsService.COMPLETE ) {}
+    else if (dataJob === this.constantsService.EDIT) {} 
+    else if (dataJob === this.constantsService.DELETE_TODO) {
+      this.taskService.taskList.splice(taskIndex, 1);
+    } else {}
   }
 
   ngOnDestroy(): void {

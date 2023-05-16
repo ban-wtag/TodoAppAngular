@@ -1,7 +1,0 @@
-<p>delete-card works!</p>
-<!-- <app-add-card (onDeleteTask)="deleteTask(task)"></app-add-card> -->
-<app-add-card
-  *ngFor="let task of taskService.taskList"
-  [task]="task"
-  (onDeleteTask)="deleteTask(task)"
-></app-add-card>
