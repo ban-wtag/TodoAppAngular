@@ -13,7 +13,6 @@ import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directi
   templateUrl: './add-card.component.html',
   styleUrls: ['./add-card.component.css'],
 })
-
 export class AddCardComponent implements OnDestroy {
   utilityService: UtilityService;
   taskService: TaskService;

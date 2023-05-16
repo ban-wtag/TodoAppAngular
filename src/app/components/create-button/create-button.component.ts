@@ -5,7 +5,6 @@ import { Component, Output, EventEmitter } from '@angular/core';
   templateUrl: './create-button.component.html',
   styleUrls: ['./create-button.component.css'],
 })
-
 export class CreateButtonComponent {
   @Output() createButtonClick = new EventEmitter();
 

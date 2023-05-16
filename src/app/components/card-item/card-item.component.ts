@@ -5,5 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './card-item.component.html',
   styleUrls: ['./card-item.component.css'],
 })
-
 export class CardItemComponent {}

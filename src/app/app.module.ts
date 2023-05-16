@@ -19,7 +19,7 @@ import { UtilityService } from 'src/app/services/utility.service';
     CreateButtonComponent,
     AddCardComponent,
     NewTaskInputDirective,
-    TaskButtonComponent,
+    TaskButtonComponent
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
   providers: [ConstantsService, TaskService, UtilityService],
