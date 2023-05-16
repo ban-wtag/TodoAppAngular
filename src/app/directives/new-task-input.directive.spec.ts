@@ -5,4 +5,5 @@ describe('NewTaskInputDirective', () => {
     const directive = new NewTaskInputDirective();
     expect(directive).toBeTruthy();
   });
+  
 });

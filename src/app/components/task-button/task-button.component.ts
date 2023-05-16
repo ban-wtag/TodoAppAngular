@@ -61,15 +61,14 @@ export class TaskButtonComponent implements OnInit {
       { display: 'inline-block' }
     );
   }
-  TaskButtonClick(button: any): void {
-
-    switch (button.dataJob){
+  TaskButtonClick({dataJob, id} : {dataJob: any, id: number}): void {
+    switch (dataJob){
     case this.constantsService.COMPLETE:
       break;
     case this.constantsService.EDIT:
       break;
     case this.constantsService.DELETE_TODO:
-      this.taskButtonClick.emit({id: button.id, dataJob: button.dataJob});
+      this.taskButtonClick.emit({id, dataJob});
       break;
     default:
       break;

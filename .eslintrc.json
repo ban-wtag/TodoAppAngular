@@ -15,9 +15,9 @@
       "rules": {
         "indent": ["error", 2],
         "import/newline-after-import": ["error", { "count": 1 }],
+        "array-element-newline": ["error", "consistent"],
         "padding-line-between-statements": [
           "error",
-          // { "blankLine": "always", "prev": "*", "next": "export" },
           { "blankLine": "always", "prev": "*", "next": "export" },
           { "blankLine": "always", "prev": "export", "next": "*" }
         ],
