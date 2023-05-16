@@ -11,6 +11,7 @@ import { TaskService } from 'src/app/services/task.service';
 export class TaskButtonComponent implements OnInit {
   @Input() id!: number;
   @Output() taskButtonClick: EventEmitter<{id: number, dataJob: string}> = new EventEmitter<{id: number, dataJob: string}>();
+  
   buttons: {
     label: string;
     src: string;
@@ -61,17 +62,16 @@ export class TaskButtonComponent implements OnInit {
       { display: 'inline-block' }
     );
   }
-  TaskButtonClick(button: any): void {
-
-    switch (button.dataJob){
+  TaskButtonClick({dataJob, id} : {dataJob: any, id: number}): void {
+    switch (dataJob){
     case this.constantsService.COMPLETE:
-      this.taskButtonClick.emit({id: button.id, dataJob: button.dataJob});
+      this.taskButtonClick.emit({id, dataJob});
       break;
     case this.constantsService.EDIT:
-      this.taskButtonClick.emit({id: button.id, dataJob: button.dataJob});
+      this.taskButtonClick.emit({id, dataJob});
       break;
     case this.constantsService.DELETE_TODO:
-      this.taskButtonClick.emit({id: button.id, dataJob: button.dataJob});
+      this.taskButtonClick.emit({id, dataJob});
       break;
     default:
       break;
