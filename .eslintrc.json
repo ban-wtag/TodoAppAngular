@@ -8,9 +8,17 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
       ],
+      "plugins": ["prettier"],
       "rules": {
+        "padding-line-between-statements": [
+          "error",
+          { "blankLine": "always", "prev": "*", "next": "export" }
+        ],
+        "prettier/prettier": "error",
+        // "linebreak-style": ["error", "unix"],
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -35,8 +43,16 @@
         "plugin:@angular-eslint/template/recommended",
         "plugin:@angular-eslint/template/accessibility"
       ],
-      "rules": {}
-      
+      "rules": {
+        "padding-line-between-statements": [
+          "error",
+          {
+            "blankLine": "always",
+            "prev": "multiline-expression",
+            "next": "export"
+          }
+        ]
+      }
     }
   ]
 }

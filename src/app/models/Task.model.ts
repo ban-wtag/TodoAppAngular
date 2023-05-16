@@ -1,8 +1,8 @@
 export class Task {
-  name: string = '';
-  id: number = 0;
-  done: boolean = false;
-  edit: boolean = false;
-  trash: boolean = false;
+  name = '';
+  id = 0;
+  done = false;
+  edit = false;
+  trash = false;
   startDate: number = Date.now();
 }

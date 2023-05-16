@@ -11,23 +11,6 @@
   <li class="item" *ngFor="let task of taskService.taskList">
     <p class="text" innerText="{{ task.name }}"></p>
     <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
-    <img
-      src="assets/icons/done.svg"
-      [attr.data-job]="constantsService.COMPLETE"
-      [id]="task.id"
-      [ngStyle]="{ display: 'inline-block' }"
-    />
-    <img
-      src="assets/icons/edit.svg"
-      [attr.data-job]="constantsService.EDIT"
-      [id]="task.id"
-      [ngStyle]="{ display: 'inline-block' }"
-    />
-    <img
-      src="assets/icons/delete.svg"
-      [attr.data-job]="constantsService.DELETE_TODO"
-      [id]="task.id"
-      [ngStyle]="{ display: 'inline-block' }"
-    />
+    <app-task-button [id]="task.id"></app-task-button>
   </li>
 </ul>
