@@ -86,9 +86,10 @@ export class AddCardComponent implements OnDestroy {
     const id = event.id;
     const dataJob = event.dataJob;
     const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
-    if (taskIndex !== -1 && dataJob === this.constantsService.COMPLETE ) {}
-    else if (dataJob === this.constantsService.EDIT) {} 
-    else if (dataJob === this.constantsService.DELETE_TODO) {
+    if (taskIndex !== -1 && dataJob === this.constantsService.COMPLETE ) {
+    }
+    else if (taskIndex !==-1 && dataJob === this.constantsService.EDIT) {} 
+    else if ( taskIndex !== -1 && dataJob === this.constantsService.DELETE_TODO) {
       this.taskService.taskList.splice(taskIndex, 1);
     } else {}
   }
