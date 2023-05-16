@@ -1,13 +1,19 @@
+<<<<<<< HEAD
 <app-create-button (createButtonClick)="showInput()"></app-create-button>
+=======
+<app-create-button (createButtonClick)="onShowInput()"></app-create-button>
+
+>>>>>>> step2-add-functionality-to-add-tasks
 <div *ngIf="utilityService.show">
-  <input [(ngModel)]="newTask" #newTaskInput />
-  <button (click)="addTaskToTaskList()" id="addTaskButton">Add Task</button>
-  <button (click)="resetInput()">
-    <i class="fas fa-trash-alt" style="color: rgba(109, 107, 107, 0.835)"></i>
+  <input [(ngModel)]="newTask" appNewTaskInput />
+  <button (click)="onAddTaskToTaskList()" id="addTaskButton">Add Task</button>
+  <button (click)="onResetInput()">
+    <i class="fas fa-trash-alt"></i>
   </button>
 </div>
 <ul>
   <li class="item" *ngFor="let task of taskService.taskList">
+<<<<<<< HEAD
     <p class="text">{{ task.name }}</p>
     <div class="date" id="{{ task.id }}">Created At: {{ formattedDate }}</div>
     <img
@@ -29,5 +35,10 @@
       [ngStyle]="{ display: 'inline-block' }"
       (click)="onDelete(task)"
     />
+=======
+    <p class="text" innerText="{{ task.name }}"></p>
+    <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
+    <app-task-button [id]="task.id"></app-task-button>
+>>>>>>> step2-add-functionality-to-add-tasks
   </li>
 </ul>

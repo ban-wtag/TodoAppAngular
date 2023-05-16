@@ -1,8 +1,8 @@
 export interface Task {
   name: string;
-  id?: number;
+  id: number;
   done: boolean;
   edit: boolean;
   trash: boolean;
-  startDate: Number;
+  startDate: number;
 }

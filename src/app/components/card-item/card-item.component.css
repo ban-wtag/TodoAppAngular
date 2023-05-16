@@ -8,6 +8,6 @@
   color: #aaacbc;
 }
 
-.fa-trash-alt {
-  color: rgba(109, 107, 107, 0.835);
+ul li {
+  list-style: none;
 }
