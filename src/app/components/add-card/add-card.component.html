@@ -11,6 +11,6 @@
   <li class="item" *ngFor="let task of taskService.taskList">
     <p class="text" innerText="{{ task.name }}"></p>
     <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
-    <app-task-button [id]="task.id" (taskButtonClick)="onTaskButtonClick($event)"></app-task-button>
+    <app-task-button [id]="task.id" (taskButtonClick)="handleTaskButtonClick($event)"></app-task-button>
   </li>
 </ul>

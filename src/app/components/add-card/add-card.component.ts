@@ -7,6 +7,7 @@ import { TaskService } from 'src/app/services/task.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { Task } from 'src/app/models/Task.model';
 import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directive';
+import { TaskEventData } from 'src/app/models/TaskEventData';
 
 @Component({
   selector: 'app-add-card',
@@ -35,8 +36,7 @@ export class AddCardComponent implements OnDestroy {
   tasks: string[] = [];
   TODAY: Date = new Date();
   formattedDate = formatDate(this.TODAY, 'dd.MM.yy', 'en-GB');
-
-  private timeoutId: any;
+  timeoutId: any;
 
   onAddTaskToTaskList() {
     this.newTask = DOMPurify.sanitize(this.newTask.trim());
@@ -81,13 +81,14 @@ export class AddCardComponent implements OnDestroy {
     this.newTask = '';
   }
 
-  onTaskButtonClick(event: {id: number, dataJob: string}): void {
-    const id = event.id;
-    const dataJob = event.dataJob;
+  handleTaskButtonClick({id, dataJob}: TaskEventData): void {
     const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
 
-    if (taskIndex !== -1 && dataJob === this.constantsService.DELETE_TODO) {
+    if (taskIndex >= 0 && dataJob === this.constantsService.DELETE_TODO) {
       this.taskService.taskList.splice(taskIndex, 1);
+    }
+    else{
+      return;
     }
   }
 

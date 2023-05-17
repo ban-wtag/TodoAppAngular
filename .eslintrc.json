@@ -13,7 +13,7 @@
       ],
       "plugins": ["import"],
       "rules": {
-        "indent": ["error", 2],
+        "indent": [2, 2, {"SwitchCase": 1}],
         "import/newline-after-import": ["error", { "count": 1 }],
         "array-element-newline": ["error", "consistent"],
         "padding-line-between-statements": [

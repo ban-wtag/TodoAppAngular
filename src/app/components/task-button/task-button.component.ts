@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { TaskService } from 'src/app/services/task.service';
+import { TaskEventData } from 'src/app/models/TaskEventData';
 
 @Component({
   selector: 'app-task-button',
@@ -10,7 +11,7 @@ import { TaskService } from 'src/app/services/task.service';
 
 export class TaskButtonComponent implements OnInit {
   @Input() id!: number;
-  @Output() taskButtonClick: EventEmitter<{id: number, dataJob: string}> = new EventEmitter<{id: number, dataJob: string}>();
+  @Output() taskButtonClick = new EventEmitter<TaskEventData>();
   buttons: {
     label: string;
     src: string;
@@ -61,17 +62,13 @@ export class TaskButtonComponent implements OnInit {
       { display: 'inline-block' }
     );
   }
-  TaskButtonClick({dataJob, id} : {dataJob: any, id: number}): void {
-    switch (dataJob){
-    case this.constantsService.COMPLETE:
-      break;
-    case this.constantsService.EDIT:
-      break;
-    case this.constantsService.DELETE_TODO:
-      this.taskButtonClick.emit({id, dataJob});
-      break;
-    default:
-      break;
+  onTaskButtonClick({ dataJob, id }: TaskEventData): void {
+    switch (dataJob) {
+      case this.constantsService.DELETE_TODO:
+        this.taskButtonClick.emit({ id, dataJob });
+        break;
+      default:
+        break;
     }
   }
 }
