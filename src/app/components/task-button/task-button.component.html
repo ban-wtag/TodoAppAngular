@@ -6,6 +6,6 @@
     [ngStyle]="button.ngstyle"
     [alt]="button.label"
     *ngIf="visibilityHandle(button, task)"
-    (click)="TaskButtonClick(button)"
+    (click)="onTaskButtonClick(button)"
   />
   </ng-container>

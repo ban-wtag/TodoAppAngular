@@ -2,6 +2,7 @@ import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/models/Task.model';
+import { TaskEventData } from 'src/app/models/TaskEventData';
 
 @Component({
   selector: 'app-task-button',
@@ -12,8 +13,7 @@ import { Task } from 'src/app/models/Task.model';
 export class TaskButtonComponent implements OnInit {
   @Input() id!: number;
   @Input() task: any;
-  @Output() taskButtonClick: EventEmitter<{id: number, dataJob: string}> = new EventEmitter<{id: number, dataJob: string}>();
-  
+  @Output() taskButtonClick = new EventEmitter<TaskEventData>();
   buttons: {
     label: string;
     src: string;
@@ -65,19 +65,16 @@ export class TaskButtonComponent implements OnInit {
     );
   }
 
-  TaskButtonClick({id, dataJob} : {id: number, dataJob: any}): void {
-    switch (dataJob){
-    case this.constantsService.COMPLETE:
-      this.taskButtonClick.emit({id, dataJob});
-      break;
-    case this.constantsService.EDIT:
-      this.taskButtonClick.emit({id, dataJob});
-      break;
-    case this.constantsService.DELETE_TODO:
-      this.taskButtonClick.emit({id, dataJob});
-      break;
-    default:
-      break;
+  onTaskButtonClick({ dataJob, id }: TaskEventData): void {
+    switch (dataJob) {
+      case this.constantsService.COMPLETE:
+        this.taskButtonClick.emit({id, dataJob});
+        break;
+      case this.constantsService.DELETE_TODO:
+        this.taskButtonClick.emit({id, dataJob});
+        break;
+      default:
+        break;
     }
   }
 

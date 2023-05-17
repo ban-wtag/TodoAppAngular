@@ -13,26 +13,28 @@ import { TaskService } from 'src/app/services/task.service';
 import { UtilityService } from 'src/app/services/utility.service';
 import { NewTaskInputDirective } from './directives/new-task-input.directive';
 
-
 @NgModule({
   declarations: [
     AppComponent, 
     CreateButtonComponent,
     AddCardComponent,
     NewTaskInputDirective,
-    TaskButtonComponent],
-    
+    TaskButtonComponent
+  ],
+
   imports: [
     BrowserModule, 
     AppRoutingModule, 
     ReactiveFormsModule, 
     FormsModule
   ],
+
   providers: [
     ConstantsService, 
     TaskService, 
     UtilityService
   ],
+
   bootstrap: [AppComponent],
 })
 
