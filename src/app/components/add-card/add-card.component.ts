@@ -34,9 +34,9 @@ export class AddCardComponent implements OnDestroy {
   newTask = '';
   tasks: string[] = [];
   TODAY: Date = new Date();
+  endDate!: number;
   formattedDate = formatDate(this.TODAY, 'dd.MM.yy', 'en-GB');
-
-  private timeoutId: any;
+  timeoutId: any;
 
   onAddTaskToTaskList() {
     this.newTask = DOMPurify.sanitize(this.newTask.trim());
@@ -49,6 +49,9 @@ export class AddCardComponent implements OnDestroy {
         edit: this.task.edit,
         trash: this.task.trash,
         startDate: Date.now(),
+        showCompleteButton: this.task.showCompleteButton,
+        showDeleteButton: this.task.showDeleteButton,
+        showEditButton: this.task.showEditButton,
       };
 
       this.taskService.taskList.unshift(newlyCreatedTask);
@@ -82,13 +85,16 @@ export class AddCardComponent implements OnDestroy {
   }
 
   onCompleteTask(taskIndex: number){
-    console.log(this.taskService.taskList[taskIndex].name);
     this.taskService.taskList[taskIndex].done = true;
-    console.log(this.taskService.taskList);
-    this.taskService.taskList
-
-    
+    this.taskService.taskList[taskIndex].showCompleteButton = false;
+    this.taskService.taskList[taskIndex].showEditButton = false;  
   }
+
+  calculateDuration(startDate: number): number{
+    this.endDate = Date.now();
+    return Math.floor(Math.abs((this.endDate - startDate)/this.constantsService.MS_PER_DAY) + 1);
+  }
+
   onTaskButtonClick(event: {id: number, dataJob: string}): void {
     const id = event.id;
     const dataJob = event.dataJob;

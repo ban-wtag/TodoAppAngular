@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { TaskService } from 'src/app/services/task.service';
+import { Task } from 'src/app/models/Task.model';
 
 @Component({
   selector: 'app-task-button',
@@ -10,6 +11,7 @@ import { TaskService } from 'src/app/services/task.service';
 
 export class TaskButtonComponent implements OnInit {
   @Input() id!: number;
+  @Input() task: any;
   @Output() taskButtonClick: EventEmitter<{id: number, dataJob: string}> = new EventEmitter<{id: number, dataJob: string}>();
   
   buttons: {
@@ -62,7 +64,8 @@ export class TaskButtonComponent implements OnInit {
       { display: 'inline-block' }
     );
   }
-  TaskButtonClick({dataJob, id} : {dataJob: any, id: number}): void {
+
+  TaskButtonClick({id, dataJob} : {id: number, dataJob: any}): void {
     switch (dataJob){
     case this.constantsService.COMPLETE:
       this.taskButtonClick.emit({id, dataJob});
@@ -76,5 +79,21 @@ export class TaskButtonComponent implements OnInit {
     default:
       break;
     }
+  }
+
+  visibilityHandle(button: any, task: Task){
+    if (button.dataJob === 'edit' && task.showEditButton) {
+      return true;
+    }
+  
+    if (button.dataJob === 'delete' && task.showDeleteButton) {
+      return true;
+    }
+
+    if (button.dataJob === 'complete' && task.showCompleteButton) {
+      return true;
+    }
+  
+    return false;
   }
 }
