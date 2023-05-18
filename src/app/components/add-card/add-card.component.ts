@@ -98,17 +98,36 @@ export class AddCardComponent implements OnDestroy {
 
   handleTaskButtonClick({id, dataJob}: TaskEventData): void {
     const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
-
-    if (taskIndex !== -1 && dataJob === this.constantsService.COMPLETE) {
-      this.onCompleteTask(taskIndex);
-    }
-    if (taskIndex >= 0 && dataJob === this.constantsService.DELETE_TODO) {
-      this.taskService.taskList.splice(taskIndex, 1);
-    } 
-    else{
-      return;
+    switch (dataJob) {
+      case this.constantsService.COMPLETE:
+        if (taskIndex >= 0) {
+          this.onCompleteTask(taskIndex);
+        }
+        break;
+  
+      case this.constantsService.DELETE_TODO:
+        if (taskIndex >= 0) {
+          this.taskService.taskList.splice(taskIndex, 1);
+        }
+        break;
+  
+      default:
+        return;
     }
   }
+
+  visibilityHandle({dataJob}: {dataJob: any}, task: Task): boolean {
+    switch (dataJob) {
+      case 'edit':
+        return !!task.showEditButton;
+      case 'delete':
+        return !!task.showDeleteButton;
+      case 'complete':
+        return !!task.showCompleteButton;
+      default:
+        return false;
+    }
+  } 
 
   ngOnDestroy(): void {
     this.clearTimeout();

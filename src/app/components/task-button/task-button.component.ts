@@ -78,19 +78,16 @@ export class TaskButtonComponent implements OnInit {
     }
   }
 
-  visibilityHandle(button: any, task: Task){
-    if (button.dataJob === 'edit' && task.showEditButton) {
-      return true;
+  visibilityHandle({dataJob}: {dataJob: any}, task: Task): boolean {
+    switch (dataJob) {
+      case 'edit':
+        return !!task.showEditButton;
+      case 'delete':
+        return !!task.showDeleteButton;
+      case 'complete':
+        return !!task.showCompleteButton;
+      default:
+        return false;
     }
-  
-    if (button.dataJob === 'delete' && task.showDeleteButton) {
-      return true;
-    }
-
-    if (button.dataJob === 'complete' && task.showCompleteButton) {
-      return true;
-    }
-  
-    return false;
-  }
+  } 
 }

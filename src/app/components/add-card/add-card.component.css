@@ -1,7 +1,7 @@
 .date,
 .duration {
   position: relative;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -12,6 +12,7 @@
 .fa-trash-alt {
   color: rgba(109, 107, 107, 0.835);
 }
+
 .text.completed {
   text-decoration: line-through;
   color: green;
