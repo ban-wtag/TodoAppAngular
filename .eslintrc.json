@@ -13,7 +13,6 @@
       ],
       "plugins": ["import"],
       "rules": {
-
         "indent": [2, 2, {"SwitchCase": 1}],
         "import/newline-after-import": ["error", { "count": 1 }],
         "array-element-newline": ["error", "consistent"],
