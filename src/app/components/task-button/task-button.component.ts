@@ -105,17 +105,17 @@ export class TaskButtonComponent implements OnInit {
 
   visibilityHandle({dataJob}: {dataJob: any}, task: Task): boolean {
     switch (dataJob) {
-      case 'edit':
+      case this.constantsService.EDIT:
         return !!task.showEditButton;
-      case 'delete':
+      case this.constantsService.DELETE_TODO:
         return !!task.showDeleteButton;
-      case 'complete':
+      case this.constantsService.COMPLETE:
         return !!task.showCompleteButton;
-      case 'revert':
+      case this.constantsService.REVERT:
         return !!task.showRevertButton;
-      case 'save':
+      case this.constantsService.SAVE:
         return !!task.showSaveButton;
-      case 'completeAfterEdit':
+      case this.constantsService.COMPLETE_AFTER_EDIT:
         return !!task.showSaveButton;
       default:
         return false;

@@ -69,7 +69,6 @@ export class AddCardComponent implements OnDestroy {
     } else {
       this.setFocusWithTimeout();
     }
-    console.log("this.taskService.taskList", this.taskService.taskList);
   }
 
   onShowInput() {
@@ -94,8 +93,6 @@ export class AddCardComponent implements OnDestroy {
   }
 
   onTaskFocused(index:number){
-    console.log("index", index);
-    console.log("view children ", this.taskFoused);
     this.timeoutId2 = setTimeout(() => {
       this.taskFoused.toArray()[index].nativeElement.focus();
     }, 0);    
@@ -112,12 +109,10 @@ export class AddCardComponent implements OnDestroy {
     this.taskService.taskList[taskIndex].showSaveButton = false;
     this.taskService.taskList[taskIndex].showCompleteAfterEditButton = false;
     this.taskService.taskList[taskIndex].showRevertButton = false;
-    console.log("taskList ", this.taskService.taskList);
   }
 
   onRevertTask(taskIndex: number){
     const prevTask = this.taskService.taskList[taskIndex].name;
-    console.log("prevTask ", prevTask);
     this.taskService.taskList[taskIndex].edit = false;
     this.taskService.taskList[taskIndex].editable = false; 
     this.taskService.taskList[taskIndex].name = prevTask;
@@ -128,7 +123,6 @@ export class AddCardComponent implements OnDestroy {
     this.taskService.taskList[taskIndex].showSaveButton = false;
     this.taskService.taskList[taskIndex].showCompleteAfterEditButton = false;
     this.taskService.taskList[taskIndex].showRevertButton = false;
-    console.log("taskList ", this.taskService.taskList);
   }
 
   onEditTask(taskIndex: number){
@@ -153,7 +147,6 @@ export class AddCardComponent implements OnDestroy {
     this.taskService.taskList[taskIndex].showRevertButton = false; 
     this.taskService.taskList[taskIndex].editable = false; 
     this.taskService.taskList[taskIndex].name = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
-    console.log("taskList ", this.taskService.taskList);
   }
 
   calculateDuration(startDate: number): number{
@@ -163,7 +156,6 @@ export class AddCardComponent implements OnDestroy {
 
   handleTaskButtonClick({id, dataJob}: TaskEventData): void {
     const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
-    console.log("on handle task button");
     switch (dataJob) {
       case this.constantsService.COMPLETE:
         if (taskIndex >= 0) {
@@ -187,13 +179,11 @@ export class AddCardComponent implements OnDestroy {
         break;
       case this.constantsService.SAVE:
         if (taskIndex >= 0) {
-          console.log("clickedonSaveTask");
           this.onSaveTask(taskIndex);
         }
         break;
       case this.constantsService.REVERT:
         if (taskIndex >= 0) {
-          console.log("clickedonREVERTTask");
           this.onRevertTask(taskIndex);
         }
         break;
