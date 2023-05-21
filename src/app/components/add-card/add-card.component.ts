@@ -114,19 +114,6 @@ export class AddCardComponent implements OnDestroy {
     }
   }
 
-  visibilityHandle({dataJob}: {dataJob: any}, task: Task): boolean {
-    switch (dataJob) {
-      case 'edit':
-        return !!task.showEditButton;
-      case 'delete':
-        return !!task.showDeleteButton;
-      case 'complete':
-        return !!task.showCompleteButton;
-      default:
-        return false;
-    }
-  } 
-
   ngOnDestroy(): void {
     this.clearTimeout();
   }
