@@ -10,6 +10,7 @@ export class NewTaskInputDirective implements OnInit {
     this.focus();
   }
   focus(): void {
-    this.renderer.selectRootElement(this.elementRef.nativeElement).focus();
+    const elm = this.renderer.selectRootElement(this.elementRef.nativeElement)
+    elm.focus();
   }
 }
