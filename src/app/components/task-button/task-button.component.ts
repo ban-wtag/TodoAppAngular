@@ -66,14 +66,14 @@ export class TaskButtonComponent implements OnInit {
   }
 
   onTaskButtonClick({ dataJob, id }: TaskEventData): void {
+
     switch (dataJob) {
-      case this.constantsService.COMPLETE:
+      case this.constantsService.COMPLETE:    
         this.taskButtonClick.emit({id, dataJob});
         break;
+  
       case this.constantsService.DELETE_TODO:
         this.taskButtonClick.emit({id, dataJob});
-        break;
-      default:
         break;
     }
   }
@@ -89,5 +89,5 @@ export class TaskButtonComponent implements OnInit {
       default:
         return false;
     }
-  } 
+  }
 }

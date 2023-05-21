@@ -21,20 +21,17 @@ import { NewTaskInputDirective } from './directives/new-task-input.directive';
     NewTaskInputDirective,
     TaskButtonComponent
   ],
-
   imports: [
     BrowserModule, 
     AppRoutingModule, 
     ReactiveFormsModule, 
     FormsModule
   ],
-
   providers: [
     ConstantsService, 
     TaskService, 
     UtilityService
   ],
-
   bootstrap: [AppComponent],
 })
 

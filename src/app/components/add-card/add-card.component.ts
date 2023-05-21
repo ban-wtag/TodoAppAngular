@@ -98,6 +98,7 @@ export class AddCardComponent implements OnDestroy {
 
   handleTaskButtonClick({id, dataJob}: TaskEventData): void {
     const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
+
     switch (dataJob) {
       case this.constantsService.COMPLETE:
         if (taskIndex >= 0) {
@@ -110,9 +111,6 @@ export class AddCardComponent implements OnDestroy {
           this.taskService.taskList.splice(taskIndex, 1);
         }
         break;
-  
-      default:
-        return;
     }
   }
 

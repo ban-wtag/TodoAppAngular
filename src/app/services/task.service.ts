@@ -8,3 +8,4 @@ import { Task } from 'src/app/models/Task.model';
 export class TaskService {
   taskList: Task[] = [];
 }
+
