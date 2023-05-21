@@ -84,12 +84,11 @@ export class AddCardComponent implements OnDestroy {
   handleTaskButtonClick({id, dataJob}: TaskEventData): void {
     const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
 
-    if (taskIndex >= 0 && dataJob === this.constantsService.DELETE_TODO) {
-      this.taskService.taskList.splice(taskIndex, 1);
-    }
-    else{
+    if (taskIndex < 0 && dataJob !== this.constantsService.DELETE_TODO) {
       return;
     }
+
+    this.taskService.taskList.splice(taskIndex, 1);
   }
 
   ngOnDestroy(): void {

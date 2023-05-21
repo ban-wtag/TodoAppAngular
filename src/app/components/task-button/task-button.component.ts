@@ -67,8 +67,6 @@ export class TaskButtonComponent implements OnInit {
       case this.constantsService.DELETE_TODO:
         this.taskButtonClick.emit({ id, dataJob });
         break;
-      default:
-        break;
     }
   }
 }
