@@ -1,6 +1,5 @@
 import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { formatDate } from '@angular/common';
-import * as DOMPurify from 'dompurify';
 
 import { UtilityService } from 'src/app/services/utility.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -40,7 +39,7 @@ export class AddCardComponent implements OnDestroy {
   private timeoutId: any;
 
   onAddTaskToTaskList() {
-    this.newTask = DOMPurify.sanitize(this.newTask.trim());
+    this.newTask = this.newTask.replace(/(<([^>]+)>)/g, "").trim();
 
     if (this.newTask != '') {
       const newlyCreatedTask: Task = {
