@@ -8,7 +8,7 @@
   </button>
 </div>
 <ul>
-  <li class="item" *ngFor="let task of taskService.taskList">
+  <li class="item" *ngFor="let task of taskService.taskList" #errorMessage>
     <p
       class="text"
       [id]="task.id"
@@ -22,11 +22,14 @@
       [id]="task.id"
       [task]="task"
       (taskButtonClick)="handleTaskButtonClick($event)"
-    ></app-task-button>
+    ></app-task-button> 
+    <small innerText="{{task.errorMessage}}"></small>
     <p
       *ngIf="task.done"
       class="duration"
-      innerText="Completed in {{ calculateDuration(task.startDate) }} day"
+      innerText="Completed in {{
+        utilityService.calculateDuration(task.startDate)
+      }} day"
     ></p>
   </li>
 </ul>

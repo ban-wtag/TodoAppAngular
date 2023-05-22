@@ -5,6 +5,7 @@ export class Task {
   edit = false;
   trash = false;
   editable = false;
+  errorMessage = '';
   startDate: number = Date.now();
   showCompleteButton = true;
   showDeleteButton = true;
@@ -12,4 +13,6 @@ export class Task {
   showRevertButton = false;
   showSaveButton = false;
   showCompleteAfterEditButton = false;
+  
+  [key: string]: any;
 }

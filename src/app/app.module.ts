@@ -12,6 +12,7 @@ import { ConstantsService } from 'src/app/services/constants.service';
 import { TaskService } from 'src/app/services/task.service';
 import { UtilityService } from 'src/app/services/utility.service';
 import { NewTaskInputDirective } from './directives/new-task-input.directive';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NewTaskInputDirective } from './directives/new-task-input.directive';
     CreateButtonComponent,
     AddCardComponent,
     NewTaskInputDirective,
-    TaskButtonComponent
+    TaskButtonComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule, 

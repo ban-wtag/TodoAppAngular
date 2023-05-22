@@ -32,16 +32,24 @@ export class AddCardComponent implements OnDestroy {
   @ViewChild(NewTaskInputDirective) newTaskInputDirective!: NewTaskInputDirective;
   @ViewChildren('taskFocus') taskFoused!: QueryList<ElementRef>
 
-  selectedTaskId: number | null = null;
-
   task: Task = new Task();
   newTask = '';
   tasks: string[] = [];
   TODAY: Date = new Date();
   endDate!: number;
   formattedDate = formatDate(this.TODAY, 'dd.MM.yy', 'en-GB');
-  timeoutId1: any;
-  timeoutId2: any;
+  timeoutId1!: any;
+  timeoutId2!: any;
+  propertiesToToggle: string[]= [
+    'editable',
+    'edit',
+    'showCompleteButton',
+    'showEditButton',
+    'showDeleteButton',
+    'showSaveButton',
+    'showCompleteAfterEditButton',
+    'showRevertButton'
+  ]
 
   onAddTaskToTaskList() {
     this.newTask = DOMPurify.sanitize(this.newTask.trim());
@@ -54,6 +62,7 @@ export class AddCardComponent implements OnDestroy {
         edit: this.task.edit,
         trash: this.task.trash,
         editable: this.task.editable,
+        errorMessage: this.task.errorMessage,
         startDate: Date.now(),
         showCompleteButton: this.task.showCompleteButton,
         showDeleteButton: this.task.showDeleteButton,
@@ -69,6 +78,7 @@ export class AddCardComponent implements OnDestroy {
     } else {
       this.setFocusWithTimeout();
     }
+    console.log("on Initial stage task ", this.taskService.taskList);
   }
 
   onShowInput() {
@@ -99,59 +109,57 @@ export class AddCardComponent implements OnDestroy {
   }
 
   onSaveTask(taskIndex: number){
-    this.onTaskFocused(taskIndex);
-    this.taskService.taskList[taskIndex].editable = false; 
-    this.taskService.taskList[taskIndex].edit = false;
+    const taskName = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
+    if(!taskName){
+      console.log("what ever in empty task on save", this.taskService.taskList);
+      this.taskService.taskList[taskIndex].errorMessage = 'Please add Description';
+      this.onTaskFocused(taskIndex);
+      return;
+    }
     this.taskService.taskList[taskIndex].name = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
-    this.taskService.taskList[taskIndex].showCompleteButton = true;
-    this.taskService.taskList[taskIndex].showEditButton = true; 
-    this.taskService.taskList[taskIndex].showDeleteButton = true;
-    this.taskService.taskList[taskIndex].showSaveButton = false;
-    this.taskService.taskList[taskIndex].showCompleteAfterEditButton = false;
-    this.taskService.taskList[taskIndex].showRevertButton = false;
+    this.utilityService.toggleTaskProperties(taskIndex, ...this.propertiesToToggle);
+    this.taskService.taskList[taskIndex].errorMessage = '';
   }
 
   onRevertTask(taskIndex: number){
-    const prevTask = this.taskService.taskList[taskIndex].name;
-    this.taskService.taskList[taskIndex].edit = false;
-    this.taskService.taskList[taskIndex].editable = false; 
-    this.taskService.taskList[taskIndex].name = prevTask;
-    this.taskFoused.toArray()[taskIndex].nativeElement.innerText = prevTask;
-    this.taskService.taskList[taskIndex].showCompleteButton = true;
-    this.taskService.taskList[taskIndex].showEditButton = true; 
-    this.taskService.taskList[taskIndex].showDeleteButton = true;
-    this.taskService.taskList[taskIndex].showSaveButton = false;
-    this.taskService.taskList[taskIndex].showCompleteAfterEditButton = false;
-    this.taskService.taskList[taskIndex].showRevertButton = false;
+    this.utilityService.toggleTaskProperties(taskIndex, ...this.propertiesToToggle);
+    this.taskFoused.toArray()[taskIndex].nativeElement.innerText = this.taskService.taskList[taskIndex].name;
+    console.log("on Revert button ", this.taskService.taskList);
+    this.taskService.taskList[taskIndex].errorMessage = '';
   }
 
   onEditTask(taskIndex: number){
-    this.taskService.taskList[taskIndex].editable = true;
+    this.utilityService.toggleTaskProperties(taskIndex, ...this.propertiesToToggle);
     this.onTaskFocused(taskIndex);
-    this.taskService.taskList[taskIndex].edit = true;
-    this.taskService.taskList[taskIndex].showCompleteButton = false;
-    this.taskService.taskList[taskIndex].showEditButton = false; 
-    this.taskService.taskList[taskIndex].showDeleteButton = false;
-    this.taskService.taskList[taskIndex].showSaveButton = true;
-    this.taskService.taskList[taskIndex].showCompleteAfterEditButton = true;
-    this.taskService.taskList[taskIndex].showRevertButton = true;
+    console.log('on edit task ', this.taskService.taskList)
   }
 
   onCompleteTask(taskIndex: number){
-    this.taskService.taskList[taskIndex].done = true;
-    this.taskService.taskList[taskIndex].showCompleteButton = false;
-    this.taskService.taskList[taskIndex].showEditButton = false; 
-    this.taskService.taskList[taskIndex].showDeleteButton = true;
-    this.taskService.taskList[taskIndex].showSaveButton = false;
-    this.taskService.taskList[taskIndex].showCompleteAfterEditButton = false;
-    this.taskService.taskList[taskIndex].showRevertButton = false; 
-    this.taskService.taskList[taskIndex].editable = false; 
     this.taskService.taskList[taskIndex].name = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
+    this.utilityService.toggleTaskProperties(taskIndex, 'showCompleteButton', 'showEditButton', 'done');
+    this.taskService.taskList[taskIndex].errorMessage = '';
   }
 
-  calculateDuration(startDate: number): number{
-    this.endDate = Date.now();
-    return Math.floor(Math.abs((this.endDate - startDate)/this.constantsService.MS_PER_DAY) + 1);
+  onCompeteAfterEditTask(taskIndex: number){
+    const taskName = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
+    if(!taskName){
+      this.taskService.taskList[taskIndex].errorMessage = 'Please add Description';
+      this.onTaskFocused(taskIndex);
+      return;
+    }
+    this.taskService.taskList[taskIndex].name = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
+    const propertiesToToggles = [
+      'done',
+      'edit',
+      'editable',
+      'showCompleteAfterEditButton',
+      'showDeleteButton',
+      'showRevertButton',
+      'showSaveButton'
+    ]
+    this.utilityService.toggleTaskProperties(taskIndex, ...propertiesToToggles);
+    this.taskService.taskList[taskIndex].errorMessage = '';
+    console.log("on complete after task ",this.taskService.taskList);
   }
 
   handleTaskButtonClick({id, dataJob}: TaskEventData): void {
@@ -174,7 +182,7 @@ export class AddCardComponent implements OnDestroy {
         break;
       case this.constantsService.COMPLETE_AFTER_EDIT:
         if (taskIndex >= 0) {
-          this.onCompleteTask(taskIndex);
+          this.onCompeteAfterEditTask(taskIndex);
         }
         break;
       case this.constantsService.SAVE:
