@@ -12,7 +12,7 @@
 
 <div class="inputBoxContainer">
 <div *ngIf="utilityService.show">
-  <input [(ngModel)]="newTask" appNewTaskInput class/>
+  <input [(ngModel)]="newTask" appNewTaskInput class="inputBox"/>
   <app-create-button (click)="onAddTaskToTaskList()" id="addTaskButton">Add Task</app-create-button>
   <app-create-button (click)="onResetInput()">
     <i class="fas fa-trash-alt"></i>

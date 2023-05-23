@@ -1,5 +1,6 @@
 .secondHeader,
 .inputBoxContainer {
+  border: 1px solid red;
   width: 80%;
   display: flex;
   margin: auto;
@@ -33,3 +34,15 @@
   width: 100%;
   padding-left: 1rem;
 }
+
+.inputBox{
+  height: 91.6px;
+  width: 379.73px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+#addTaskButton{
+  margin-right: 5px;
+}
+
