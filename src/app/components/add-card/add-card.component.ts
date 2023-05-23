@@ -1,5 +1,4 @@
 import { Component, OnDestroy, ViewChild } from '@angular/core';
-
 import { UtilityService } from 'src/app/services/utility.service';
 import { TaskService } from 'src/app/services/task.service';
 import { ConstantsService } from 'src/app/services/constants.service';
