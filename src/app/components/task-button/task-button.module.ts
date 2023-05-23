@@ -19,7 +19,6 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes)
   ],
-//   exports: [TaskButtonComponent],
 })
 
 export class TaskButtonModule { 
