@@ -1,16 +1,23 @@
-<app-create-button (createButtonClick)="onShowInput()"></app-create-button>
-
-<div *ngIf="utilityService.show">
-  <input [(ngModel)]="newTask" appNewTaskInput />
-  <button (click)="onAddTaskToTaskList()" id="addTaskButton">Add Task</button>
-  <button (click)="onResetInput()">
-    <i class="fas fa-trash-alt"></i>
-  </button>
+<h2 innerText="{{ APP_TITLE }}" class="secondHeader"></h2>
+<div class="secondHeader">
+<div>
+<app-create-button (createButtonClick)="onShowInput()" class="createButton"><i class="fa-duotone fa-plus"></i>Create</app-create-button>
 </div>
-<ul>
-  <li class="item" *ngFor="let task of taskService.taskList">
-    <p class="text" innerText="{{ task.name }}"></p>
-    <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
-    <app-task-button [id]="task.id"></app-task-button>
-  </li>
-</ul>
+<div class="filter">
+<app-create-button >All</app-create-button>
+<app-create-button >Incomplete</app-create-button>
+<app-create-button >Complete</app-create-button>
+</div>
+</div>
+
+<div class="inputBoxContainer">
+<div *ngIf="utilityService.show">
+  <input [(ngModel)]="newTask" appNewTaskInput class/>
+  <app-create-button (click)="onAddTaskToTaskList()" id="addTaskButton">Add Task</app-create-button>
+  <app-create-button (click)="onResetInput()">
+    <i class="fas fa-trash-alt"></i>
+  </app-create-button>
+</div>
+</div>
+
+<app-card-item [taskLists]="taskService.taskList" class="grid-container"></app-card-item>

@@ -1,1 +1,9 @@
-<p>card-item works!</p>
+<div class="grid-item" *ngFor="let task of taskLists">
+  <p class="text" innerText="{{ task.name }}"></p>
+  <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
+  <span><a class = "taskButton" [id]="task.id" routerLink="/taskButton">
+  </a>
+  </span>
+  <!-- <app-task-button [id]="task.id"></app-task-button> -->
+  <router-outlet></router-outlet>
+</div>

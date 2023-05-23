@@ -1,13 +1,7 @@
 .date {
   position: relative;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
+  font-weight: 600px;
   font-size: 14px;
   line-height: 16px;
-  color: #aaacbc;
-}
-
-ul li {
-  list-style: none;
+  color: #BBBDD0
 }

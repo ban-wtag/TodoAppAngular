@@ -1,6 +1,4 @@
 import { Component, OnDestroy, ViewChild } from '@angular/core';
-import { formatDate } from '@angular/common';
-import * as DOMPurify from 'dompurify';
 
 import { UtilityService } from 'src/app/services/utility.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -15,9 +13,11 @@ import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directi
 })
 
 export class AddCardComponent implements OnDestroy {
+
   utilityService: UtilityService;
   taskService: TaskService;
   constantsService: ConstantsService;
+
   constructor(
     utilityService: UtilityService,
     taskService: TaskService,
@@ -34,13 +34,11 @@ export class AddCardComponent implements OnDestroy {
   task: Task = new Task();
   newTask = '';
   tasks: string[] = [];
-  TODAY: Date = new Date();
-  formattedDate = formatDate(this.TODAY, 'dd.MM.yy', 'en-GB');
-
-  private timeoutId: any;
+  timeoutId: any;
+  APP_TITLE="Add Tasks";
 
   onAddTaskToTaskList() {
-    this.newTask = DOMPurify.sanitize(this.newTask.trim());
+    this.newTask = this.newTask.replace(/(<([^>]+)>)/g, "").trim();
 
     if (this.newTask != '') {
       const newlyCreatedTask: Task = {

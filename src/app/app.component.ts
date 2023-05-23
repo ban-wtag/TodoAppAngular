@@ -8,5 +8,6 @@ import { ConstantsService } from 'src/app/services/constants.service';
 })
 
 export class AppComponent {
+  title='todo';
   constructor(public constantsService: ConstantsService) {}
 }
