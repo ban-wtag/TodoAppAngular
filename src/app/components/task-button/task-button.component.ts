@@ -7,8 +7,9 @@ import { TaskService } from 'src/app/services/task.service';
   templateUrl: './task-button.component.html',
   styleUrls: ['./task-button.component.css'],
 })
+
 export class TaskButtonComponent implements OnInit {
-  @Input() id!: number;
+ @Input()id !: number;
   buttons: {
     label: string;
     src: string;

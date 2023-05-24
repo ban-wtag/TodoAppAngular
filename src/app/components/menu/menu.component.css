@@ -1,0 +1,11 @@
+.secondHeader {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  padding-top: 2.125rem;
+}
+
+.filter ::ng-deep button{
+  margin-left:10px;
+}

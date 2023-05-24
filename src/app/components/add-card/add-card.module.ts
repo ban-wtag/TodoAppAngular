@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddCardComponent } from 'src/app/components/add-card/add-card.component';
-import {CardItemModule} from 'src/app/components/card-item/card-item.module';
 import {CreateButtonModule} from 'src/app/components/create-button/create-button.module';
 import {FormsModule} from '@angular/forms';
-import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directive';
+import {NewTaskInputModule} from 'src/app/directives/new-task-input.module'
 
 @NgModule({
   declarations: [
-    AddCardComponent,
-    NewTaskInputDirective
+    AddCardComponent
   ],
   imports: [
     CommonModule,
-    CardItemModule,
     CreateButtonModule,
-    FormsModule
+    FormsModule,
+    NewTaskInputModule
   ],
   exports: [AddCardComponent],
 })

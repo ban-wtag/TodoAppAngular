@@ -1,9 +1,10 @@
-<div class="grid-item" *ngFor="let task of taskLists">
-  <p class="text" innerText="{{ task.name }}"></p>
-  <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
-  <span><a class = "taskButton" [id]="task.id" routerLink="/taskButton">
-  </a>
-  </span>
-  <!-- <app-task-button [id]="task.id"></app-task-button> -->
-  <router-outlet></router-outlet>
+<div class="grid-container">
+  <div *ngIf="utilityService.show" class="inputBoxContainer">
+    <app-add-card ></app-add-card>
+  </div>
+  <div *ngFor="let task of taskService.taskList" class="taskList">
+    <p class="text" innerText="{{ task.name }}"></p>
+    <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
+    <app-task-button class="taskButton" [id]="task.id"></app-task-button>
+  </div>
 </div>

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardItemComponent } from 'src/app/components/card-item/card-item.component';
 import { TaskButtonModule } from 'src/app/components/task-button/task-button.module';
-import { CardItemRoutingModule } from 'src/app/components/card-item/card-item-routing.module';
+import {AddCardModule} from 'src/app/components/add-card/add-card.module';
+
 
 @NgModule({
   declarations: [
@@ -11,7 +12,7 @@ import { CardItemRoutingModule } from 'src/app/components/card-item/card-item-ro
   imports: [
     CommonModule,
     TaskButtonModule,
-    CardItemRoutingModule
+    AddCardModule
   ],
   providers: [],
   exports: [CardItemComponent],

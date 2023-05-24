@@ -1,12 +1,3 @@
-.secondHeader,
-.inputBoxContainer {
-  width: 80%;
-  display: flex;
-  margin: auto;
-  justify-content: space-between;
-  padding-top: 2.125rem;
-}
-
 .filter ::ng-deep button{
   margin-left:10px;
 }
@@ -15,33 +6,26 @@
   color: rgba(109, 107, 107, 0.835);
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2.125rem;
-  width: 80%;
-  margin: auto;
-  padding-top: 2.125rem;
+#addTaskButton{
+  margin-right: 7px;
 }
 
-:host ::ng-deep div.grid-item {
-  border: 1px solid black;
+.inputBox {
+  border: 3px solid #DDE2FF;
   box-sizing: border-box;
   justify-content: center;
   overflow: auto;
   word-wrap: break-word;
   width: 100%;
+  height: 64px;
+  padding: 0px;
+  margin: 0 0 10px 0;
+  border-radius: none;  
   padding-left: 1rem;
 }
 
-.inputBox{
-  height: 91.6px;
-  width: 379.73px;
-  display: block;
-  margin-bottom: 10px;
-}
-
-#addTaskButton{
-  margin-right: 5px;
+.inputBoxContainer{
+  padding: 0;
+  margin: 0;
 }
 

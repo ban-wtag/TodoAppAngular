@@ -4,3 +4,25 @@
   line-height: 16px;
   color: #BBBDD0
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.125rem;
+  width: 80%;
+  margin: auto;
+  padding-top: 2.125rem;
+}
+
+.grid-container> div {
+  border: 2px solid #DDE2FF;
+  box-sizing: border-box;
+  justify-content: center;
+  overflow: auto;
+  word-wrap: break-word;
+  width: 100%;
+  padding: 1rem; 
+  background: #ffffff;
+}
+
+

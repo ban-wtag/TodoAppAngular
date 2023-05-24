@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { UtilityService } from 'src/app/services/utility.service';
 import { TaskService } from 'src/app/services/task.service';
 import { ConstantsService } from 'src/app/services/constants.service';
@@ -33,8 +33,7 @@ export class AddCardComponent implements OnDestroy {
   task: Task = new Task();
   newTask = '';
   tasks: string[] = [];
-  timeoutId: any;
-  APP_TITLE="Add Tasks";
+  timeoutId!: ReturnType<typeof setTimeout> 
 
   onAddTaskToTaskList() {
     this.newTask = this.newTask.replace(/(<([^>]+)>)/g, "").trim();
@@ -42,33 +41,29 @@ export class AddCardComponent implements OnDestroy {
     if (this.newTask != '') {
       const newlyCreatedTask: Task = {
         name: this.newTask,
-        id: this.task.id++,
+        id: this.task.id,
         done: this.task.done,
         edit: this.task.edit,
         trash: this.task.trash,
         startDate: Date.now(),
       };
-
+    
       this.taskService.taskList.unshift(newlyCreatedTask);
       this.newTask = '';
       this.utilityService.show = false;
+      console.log("tasks list ", this.taskService.taskList);
     } else {
       this.setFocusWithTimeout();
     }
   }
-
-  onShowInput() {
-    this.utilityService.show = true;
-    this.setFocusWithTimeout();
-  }
-
-  private setFocusWithTimeout(): void {
+ 
+  setFocusWithTimeout(): void {
     this.timeoutId = setTimeout(() => {
-      this.newTaskInputDirective.focus();
+       this.newTaskInputDirective.focus();
     }, 0);
   }
 
-  private clearTimeout(): void {
+  clearTimeout(): void {
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
