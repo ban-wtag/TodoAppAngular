@@ -1,1 +1,11 @@
-<p>card-item works!</p>
+<div class="grid-container">
+  <div *ngIf="utilityService.show" class="inputBoxContainer">
+    <app-add-card ></app-add-card>
+  </div>
+  <div *ngFor="let task of taskService.taskList" class="taskList">
+    <p class="text" [id]="task.id" innerText="{{ task.name }}" [class.completed]="task.done"></p>
+    <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
+    <app-task-button class="taskButton" [id]="task.id" [task]="task" (taskButtonClick)="handleTaskButtonClick($event)"></app-task-button>
+    <p *ngIf="task.done" class="duration" innerText = "Completed in {{ calculateDuration(task.startDate) }} day"></p>
+  </div>
+</div>

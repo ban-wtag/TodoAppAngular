@@ -1,0 +1,24 @@
+.secondHeader {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  padding-top: 2.125rem;
+}
+
+.filter ::ng-deep button{
+  margin-left:10px;
+}
+
+.createButton ::ng-deep button{
+  border-radius: 5px;
+  border: none;
+  width: 104px;
+  height: 36px;
+  background-color: #7A8DFD;
+  color: white;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 500;
+}
+

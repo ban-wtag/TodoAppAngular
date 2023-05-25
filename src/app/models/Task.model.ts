@@ -8,4 +8,11 @@ export class Task {
   showCompleteButton = true;
   showDeleteButton = true;
   showEditButton = true;
+
+  private static currentId = 0;
+
+  constructor() {
+    this.id = Task.currentId;
+    Task.currentId++;
+  }
 }

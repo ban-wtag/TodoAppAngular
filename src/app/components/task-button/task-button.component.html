@@ -1,4 +1,4 @@
-<ng-container  *ngFor="let button of buttons">
+<ng-container  *ngFor="let button of buttonGroup">
   <img
     [src]="button.src"
     [attr.data-job]="button.dataJob"
@@ -7,5 +7,6 @@
     [alt]="button.label"
     *ngIf="visibilityHandle(button, task)"
     (click)="onTaskButtonClick(button)"
+    class="taskButtonStyle"
   />
   </ng-container>
