@@ -1,26 +1,32 @@
 import { Injectable } from '@angular/core';
-import { ConstantsService } from 'src/app/services/constants.service';
 import { TaskService } from 'src/app/services/task.service';
-import { Task } from 'src/app/models/Task.model';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class UtilityService {
-  constantsService: ConstantsService;
-  taskService: TaskService;
-  constructor(constantsService: ConstantsService, taskService: TaskService){
-    this.constantsService = constantsService;
-    this.taskService = taskService;
-  }
   show = false;
   TODAY: Date = new Date();
   endDate!: number;
+  COMPLETE = 'complete';
+  EDIT = 'edit';
+  DELETE_TODO = 'delete';
+  REVERT = 'revert';
+  SAVE = 'save';
+  COMPLETE_AFTER_EDIT = 'completeAfterEdit';
+  APP_TITLE = 'Add Tasks';
+  MS_PER_DAY = 86400000;
+  
+  taskService: TaskService;
 
+  constructor(taskService: TaskService){
+    this.taskService = taskService;
+  }
+ 
   calculateDuration(startDate: number): number{
     this.endDate = Date.now();
-    return Math.floor(Math.abs((this.endDate - startDate)/this.constantsService.MS_PER_DAY) + 1);
+    return Math.floor(Math.abs((this.endDate - startDate)/this.MS_PER_DAY) + 1);
   }
 
   toggleTaskProperties(taskIndex: number, ...propertyNames: string[]){

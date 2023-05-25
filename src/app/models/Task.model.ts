@@ -15,4 +15,11 @@ export class Task {
   showCompleteAfterEditButton = false;
   
   [key: string]: any;
+
+  private static currentId = 0;
+
+  constructor() {
+    this.id = Task.currentId;
+    Task.currentId++;
+  }
 }

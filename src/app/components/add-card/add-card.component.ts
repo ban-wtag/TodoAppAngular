@@ -1,10 +1,6 @@
-import { Component, OnDestroy, QueryList, ViewChild, ViewChildren, ElementRef } from '@angular/core';
-import { formatDate } from '@angular/common';
-import * as DOMPurify from 'dompurify';
-
+import { Component, OnDestroy, ViewChild} from '@angular/core';
 import { UtilityService } from 'src/app/services/utility.service';
 import { TaskService } from 'src/app/services/task.service';
-import { ConstantsService } from 'src/app/services/constants.service';
 import { Task } from 'src/app/models/Task.model';
 import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directive';
 import { TaskEventData } from 'src/app/models/TaskEventData';
@@ -18,46 +14,27 @@ import { TaskEventData } from 'src/app/models/TaskEventData';
 export class AddCardComponent implements OnDestroy {
   utilityService: UtilityService;
   taskService: TaskService;
-  constantsService: ConstantsService;
   constructor(
     utilityService: UtilityService,
-    taskService: TaskService,
-    constantsService: ConstantsService
+    taskService: TaskService
   ) {
     this.utilityService = utilityService;
-    this.taskService = taskService;
-    this.constantsService = constantsService;
+    this.taskService = taskService
   }
 
   @ViewChild(NewTaskInputDirective) newTaskInputDirective!: NewTaskInputDirective;
-  @ViewChildren('taskFocus') taskFoused!: QueryList<ElementRef>
 
   task: Task = new Task();
   newTask = '';
-  tasks: string[] = [];
-  TODAY: Date = new Date();
-  endDate!: number;
-  formattedDate = formatDate(this.TODAY, 'dd.MM.yy', 'en-GB');
-  timeoutId1!: any;
-  timeoutId2!: any;
-  propertiesToToggle: string[]= [
-    'editable',
-    'edit',
-    'showCompleteButton',
-    'showEditButton',
-    'showDeleteButton',
-    'showSaveButton',
-    'showCompleteAfterEditButton',
-    'showRevertButton'
-  ]
+  timeoutId!: ReturnType<typeof setTimeout> 
 
   onAddTaskToTaskList() {
-    this.newTask = DOMPurify.sanitize(this.newTask.trim());
+    this.newTask = this.newTask.replace(/(<([^>]+)>)/g, "").trim();
 
     if (this.newTask != '') {
       const newlyCreatedTask: Task = {
         name: this.newTask,
-        id: this.task.id++,
+        id: this.task.id,
         done: this.task.done,
         edit: this.task.edit,
         trash: this.task.trash,
@@ -71,8 +48,7 @@ export class AddCardComponent implements OnDestroy {
         showSaveButton: this.task.showSaveButton,
         showCompleteAfterEditButton: this.task.showCompleteAfterEditButton,
       };
-
-      this.taskService.taskList.unshift(newlyCreatedTask);
+      this.taskService.addTaskToTaskList(newlyCreatedTask);
       this.newTask = '';
       this.utilityService.show = false;
     } else {
@@ -80,21 +56,11 @@ export class AddCardComponent implements OnDestroy {
     }
     console.log("on Initial stage task ", this.taskService.taskList);
   }
-
-  onShowInput() {
-    this.utilityService.show = true;
-    this.setFocusWithTimeout();
-  }
-
-  private setFocusWithTimeout(): void {
-    this.timeoutId1 = setTimeout(() => {
+ 
+  setFocusWithTimeout(): void {
+    this.timeoutId = setTimeout(() => {
       this.newTaskInputDirective.focus();
     }, 0);
-  }
-
-  private clearTimeout(): void {
-    this.timeoutId1 && clearTimeout(this.timeoutId1);
-    this.timeoutId2 && clearTimeout(this.timeoutId2);
   }
 
   onResetInput() {
@@ -102,99 +68,9 @@ export class AddCardComponent implements OnDestroy {
     this.newTask = '';
   }
 
-  onTaskFocused(index:number){
-    this.timeoutId2 = setTimeout(() => {
-      this.taskFoused.toArray()[index].nativeElement.focus();
-    }, 0);    
-  }
-
-  onSaveTask(taskIndex: number){
-    const taskName = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
-    if(!taskName){
-      console.log("what ever in empty task on save", this.taskService.taskList);
-      this.taskService.taskList[taskIndex].errorMessage = 'Please add Description';
-      this.onTaskFocused(taskIndex);
-      return;
-    }
-    this.taskService.taskList[taskIndex].name = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
-    this.utilityService.toggleTaskProperties(taskIndex, ...this.propertiesToToggle);
-    this.taskService.taskList[taskIndex].errorMessage = '';
-  }
-
-  onRevertTask(taskIndex: number){
-    this.utilityService.toggleTaskProperties(taskIndex, ...this.propertiesToToggle);
-    this.taskFoused.toArray()[taskIndex].nativeElement.innerText = this.taskService.taskList[taskIndex].name;
-    console.log("on Revert button ", this.taskService.taskList);
-    this.taskService.taskList[taskIndex].errorMessage = '';
-  }
-
-  onEditTask(taskIndex: number){
-    this.utilityService.toggleTaskProperties(taskIndex, ...this.propertiesToToggle);
-    this.onTaskFocused(taskIndex);
-    console.log('on edit task ', this.taskService.taskList)
-  }
-
-  onCompleteTask(taskIndex: number){
-    this.taskService.taskList[taskIndex].name = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
-    this.utilityService.toggleTaskProperties(taskIndex, 'showCompleteButton', 'showEditButton', 'done');
-    this.taskService.taskList[taskIndex].errorMessage = '';
-  }
-
-  onCompeteAfterEditTask(taskIndex: number){
-    const taskName = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
-    if(!taskName){
-      this.taskService.taskList[taskIndex].errorMessage = 'Please add Description';
-      this.onTaskFocused(taskIndex);
-      return;
-    }
-    this.taskService.taskList[taskIndex].name = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
-    const propertiesToToggles = [
-      'done',
-      'edit',
-      'editable',
-      'showCompleteAfterEditButton',
-      'showDeleteButton',
-      'showRevertButton',
-      'showSaveButton'
-    ]
-    this.utilityService.toggleTaskProperties(taskIndex, ...propertiesToToggles);
-    this.taskService.taskList[taskIndex].errorMessage = '';
-    console.log("on complete after task ",this.taskService.taskList);
-  }
-
-  handleTaskButtonClick({id, dataJob}: TaskEventData): void {
-    const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
-    switch (dataJob) {
-      case this.constantsService.COMPLETE:
-        if (taskIndex >= 0) {
-          this.onCompleteTask(taskIndex);
-        }
-        break;
-      case this.constantsService.DELETE_TODO:
-        if (taskIndex >= 0) {
-          this.taskService.taskList.splice(taskIndex, 1);
-        }
-        break;
-      case this.constantsService.EDIT:
-        if (taskIndex >= 0) {
-          this.onEditTask(taskIndex);
-        }
-        break;
-      case this.constantsService.COMPLETE_AFTER_EDIT:
-        if (taskIndex >= 0) {
-          this.onCompeteAfterEditTask(taskIndex);
-        }
-        break;
-      case this.constantsService.SAVE:
-        if (taskIndex >= 0) {
-          this.onSaveTask(taskIndex);
-        }
-        break;
-      case this.constantsService.REVERT:
-        if (taskIndex >= 0) {
-          this.onRevertTask(taskIndex);
-        }
-        break;
+  clearTimeout(): void {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
     }
   }
 

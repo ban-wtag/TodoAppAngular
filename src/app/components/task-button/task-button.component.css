@@ -1,4 +1,3 @@
-.styleButton{
-    border: none;
-    background-color: white;
+.taskButtonStyle{
+    padding-right: 10px;
 }

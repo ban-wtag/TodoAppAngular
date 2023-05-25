@@ -1,5 +1,4 @@
-<ng-container  *ngFor="let newbutton of newButtons">
-  <!-- <button class="styleButton">
+<ng-container  *ngFor="let button of buttonGroup">
   <img
     [src]="button.src"
     [attr.data-job]="button.dataJob"
@@ -8,28 +7,6 @@
     [alt]="button.label"
     *ngIf="visibilityHandle(button, task)"
     (click)="onTaskButtonClick(button)"
+    class="taskButtonStyle"
   />
-</button> -->
-
-<!-- <button 
-  class="styleButton"
-  *ngIf="visibilityHandle(newbutton, task)"
-  (click)="onTaskButtonClick(newbutton)"
-  [ngStyle]="newbutton.ngstyle"
-  [id]="newbutton.id"
-  [attr.data-job]="newbutton.dataJob"
-  innerHTML="{{newbutton.content}}"
-> 
-</button> -->
-
-<button 
-  class="styleButton"
-  *ngIf="visibilityHandle(newbutton, task)"
-  (click)="onTaskButtonClick(newbutton)"
-  [ngStyle]="newbutton.ngstyle"
-  [id]="newbutton.id"
-  [attr.data-job]="newbutton.dataJob"
-  innerHTML="{{newbutton.content}}"
-> 
-</button>
 </ng-container>

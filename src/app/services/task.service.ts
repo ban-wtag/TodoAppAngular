@@ -7,5 +7,9 @@ import { Task } from 'src/app/models/Task.model';
 
 export class TaskService {
   taskList: Task[] = [];
+  
+  addTaskToTaskList(taskList: Task) {
+    this.taskList.unshift(taskList);
+  }
 }
 
