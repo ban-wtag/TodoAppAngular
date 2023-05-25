@@ -1,7 +1,6 @@
-import { Component, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnDestroy, ViewChild} from '@angular/core';
 import { UtilityService } from 'src/app/services/utility.service';
 import { TaskService } from 'src/app/services/task.service';
-import { ConstantsService } from 'src/app/services/constants.service';
 import { Task } from 'src/app/models/Task.model';
 import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directive';
 
@@ -15,16 +14,12 @@ export class AddCardComponent implements OnDestroy {
 
   utilityService: UtilityService;
   taskService: TaskService;
-  constantsService: ConstantsService;
-
   constructor(
     utilityService: UtilityService,
-    taskService: TaskService,
-    constantsService: ConstantsService
+    taskService: TaskService
   ) {
     this.utilityService = utilityService;
-    this.taskService = taskService;
-    this.constantsService = constantsService;
+    this.taskService = taskService
   }
 
   @ViewChild(NewTaskInputDirective)
@@ -47,11 +42,9 @@ export class AddCardComponent implements OnDestroy {
         trash: this.task.trash,
         startDate: Date.now(),
       };
-    
-      this.taskService.taskList.unshift(newlyCreatedTask);
+      this.taskService.addTaskToTaskList(newlyCreatedTask);
       this.newTask = '';
       this.utilityService.show = false;
-      console.log("tasks list ", this.taskService.taskList);
     } else {
       this.setFocusWithTimeout();
     }
@@ -63,15 +56,15 @@ export class AddCardComponent implements OnDestroy {
     }, 0);
   }
 
+  onResetInput() {
+    this.utilityService.show = false;
+    this.newTask = '';
+  }
+
   clearTimeout(): void {
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
-  }
-
-  onResetInput() {
-    this.utilityService.show = false;
-    this.newTask = '';
   }
 
   ngOnDestroy(): void {

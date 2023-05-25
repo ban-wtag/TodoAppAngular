@@ -16,8 +16,4 @@ import {FormsModule} from '@angular/forms';
   exports: [TaskButtonComponent],
 })
 
-export class TaskButtonModule { 
-  constructor(){
-    console.log('TaskButtonModule loading');
-  }
-}
+export class TaskButtonModule {}

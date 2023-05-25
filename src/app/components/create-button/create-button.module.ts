@@ -12,8 +12,4 @@ import { CreateButtonComponent } from 'src/app/components/create-button/create-b
   exports: [CreateButtonComponent],
 })
 
-export class CreateButtonModule { 
-  constructor(){
-    console.log('CreateButtonModule loading');
-  }
-}
+export class CreateButtonModule {}

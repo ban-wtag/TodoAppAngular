@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ConstantsService } from 'src/app/services/constants.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +8,4 @@ import { ConstantsService } from 'src/app/services/constants.service';
 
 export class AppComponent {
   title='todo';
-  constructor(public constantsService: ConstantsService) {}
 }

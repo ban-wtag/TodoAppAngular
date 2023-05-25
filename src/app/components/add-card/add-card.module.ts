@@ -18,8 +18,4 @@ import {NewTaskInputModule} from 'src/app/directives/new-task-input.module'
   exports: [AddCardComponent],
 })
 
-export class AddCardModule { 
-  constructor(){
-    console.log('AddCardModule loading');
-  }
-}
+export class AddCardModule {}

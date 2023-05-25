@@ -12,8 +12,4 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
   exports: [NavbarComponent],
 })
 
-export class NavbarModule { 
-  constructor(){
-    console.log('product Dashboard');
-  }
-}
+export class NavbarModule {}

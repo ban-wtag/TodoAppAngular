@@ -6,4 +6,7 @@ import { Injectable } from '@angular/core';
 
 export class UtilityService {
   show = false;
+  COMPLETE = 'complete';
+  EDIT = 'edit';
+  DELETE_TODO = 'delete';
 }

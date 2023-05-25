@@ -18,8 +18,4 @@ import {AddCardModule} from 'src/app/components/add-card/add-card.module';
   exports: [CardItemComponent],
 })
 
-export class CardItemModule { 
-  constructor(){
-    console.log('CardItemModule loading');
-  }
-}
+export class CardItemModule {}

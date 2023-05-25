@@ -14,6 +14,7 @@ export class MenuComponent {
   constructor(utilityService: UtilityService) { 
     this.utilityService = utilityService;
   }
+  
   onShowInput() {
     this.utilityService.show = true;
   }
