@@ -1,0 +1,26 @@
+.navbar{
+  background: #ffffff;
+}
+
+.grid-navbar-item {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.title {
+  color: #7a8dfd;
+  font-size: 36px;
+}
+
+img.titleLogo{
+   position:relative;
+   top: 5px;
+   margin-right: 12px;
+}
+
+img.searchIcon{
+    position: relative;
+    top: 9px;
+}

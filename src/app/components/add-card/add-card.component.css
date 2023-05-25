@@ -1,13 +1,27 @@
-.date {
-  position: relative;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
-  color: #aaacbc;
+.filter ::ng-deep button{
+  margin-left:10px;
 }
 
 .fa-trash-alt {
   color: rgba(109, 107, 107, 0.835);
 }
+
+#addTaskButton{
+  margin-right: 7px;
+}
+
+.inputBox {
+  border: 3px solid #DDE2FF;
+  box-sizing: border-box;
+  justify-content: center;
+  overflow: auto;
+  word-wrap: break-word;
+  width: 100%;
+  height: 64px;
+  padding: 0px;
+  margin: 0 0 10px 0;
+  border-radius: none;  
+  padding-left: 1rem;
+}
+
+

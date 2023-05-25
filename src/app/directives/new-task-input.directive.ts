@@ -1,12 +1,12 @@
-import { Directive, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Directive, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 
 @Directive({
   selector: '[appNewTaskInput]',
 })
 
-export class NewTaskInputDirective implements OnInit {
+export class NewTaskInputDirective implements AfterViewInit{
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.focus();
   }
   focus(): void {

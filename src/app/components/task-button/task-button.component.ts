@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-import { ConstantsService } from 'src/app/services/constants.service';
+import { UtilityService } from 'src/app/services/utility.service';
 import { TaskService } from 'src/app/services/task.service';
+import { Button } from 'src/app/models/Button.model';
 import { TaskEventData } from 'src/app/models/TaskEventData';
 
 @Component({
@@ -10,63 +11,53 @@ import { TaskEventData } from 'src/app/models/TaskEventData';
 })
 
 export class TaskButtonComponent implements OnInit {
-  @Input() id!: number;
-  @Output() taskButtonClick = new EventEmitter<TaskEventData>();
-  buttons: {
-    label: string;
-    src: string;
-    dataJob: string;
-    id: number;
-    ngstyle: any;
-  }[] = [];
+ @Input()id  = 0;
+ @Output() taskButtonClick = new EventEmitter<TaskEventData>();
+ utilityService: UtilityService;
+ taskService: TaskService
+ constructor(
+   utilityService: UtilityService,
+   taskService: TaskService
+ ) {
+   this.utilityService = utilityService,
+   this.taskService = taskService
+ }
 
-  constructor(
-    public constantsService: ConstantsService,
-    public taskService: TaskService
-  ) {}
+ ngOnInit(): void {
+   this.addNewTaskButton();
+ }
 
-  ngOnInit(): void {
-    this.addNewTaskButton();
-  }
-
-  addButton(
-    label: string,
-    src: string,
-    dataJob: string,
-    id: number,
-    ngstyle: any
-  ): void {
-    this.buttons.push({ label, src, dataJob, id, ngstyle });
-  }
-
-  addNewTaskButton(): void {
-    this.addButton(
-      'Complete',
-      'assets/icons/done.svg',
-      this.constantsService.COMPLETE,
-      this.id,
-      { display: 'inline-block' }
-    );
-    this.addButton(
-      'EDIT',
-      'assets/icons/edit.svg',
-      this.constantsService.EDIT,
-      this.id,
-      { display: 'inline-block' }
-    );
-    this.addButton(
-      'DELETE',
-      'assets/icons/delete.svg',
-      this.constantsService.DELETE_TODO,
-      this.id,
-      { display: 'inline-block' }
-    );
-  }
-  onTaskButtonClick({ dataJob, id }: TaskEventData): void {
-    switch (dataJob) {
-      case this.constantsService.DELETE_TODO:
-        this.taskButtonClick.emit({ id, dataJob });
-        break;
-    }
-  }
+ buttonGroup: Button[] = [];
+ addNewTaskButton(): void {
+   this.buttonGroup = [
+     {
+       label: 'COMPLETE',
+       src: 'assets/icons/done.svg',
+       dataJob: this.utilityService.COMPLETE,
+       id: this.id,
+       ngstyle: { display: 'inline-block' },
+     },
+     {
+       label: 'EDIT',
+       src: 'assets/icons/edit.svg',
+       dataJob: this.utilityService.EDIT,
+       id: this.id,
+       ngstyle: { display: 'inline-block' },
+     },
+     {
+       label: 'DELETE',
+       src: 'assets/icons/delete.svg',
+       dataJob: this.utilityService.DELETE_TODO,
+       id: this.id,
+       ngstyle: { display: 'inline-block' },
+     }
+   ].map((button) => ({ ...button }));
+ }
+ onTaskButtonClick({ dataJob, id }: TaskEventData): void {
+   switch (dataJob) {
+     case this.utilityService.DELETE_TODO:
+       this.taskButtonClick.emit({ id, dataJob });
+       break;
+   }
+ }
 }

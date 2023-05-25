@@ -1,13 +1,32 @@
-.date {
+.date{
   position: relative;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  color: #aaacbc;
+  color: #BBBDD0
 }
 
-ul li {
-  list-style: none;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.125rem;
+  width: 80%;
+  margin: auto;
+  padding-top: 2.125rem;
 }
+
+.grid-container> div {
+  border: 2px solid #DDE2FF;
+  box-sizing: border-box;
+  justify-content: center;
+  overflow: auto;
+  word-wrap: break-word;
+  width: 100%;
+  padding: 1rem; 
+  background: #ffffff;
+}
+
+.text{
+  font-weight: 700;
+  font-size: 24px;
+}
+
