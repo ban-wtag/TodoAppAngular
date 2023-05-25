@@ -8,13 +8,12 @@ import { UtilityService } from 'src/app/services/utility.service';
 })
 export class MenuComponent {
   utilityService: UtilityService;
-  APP_TITLE="Add Tasks";
-  timeoutId: any;
+  APP_TITLE = "Add Tasks";
   
   constructor(utilityService: UtilityService) { 
     this.utilityService = utilityService;
   }
-  
+
   onShowInput() {
     this.utilityService.show = true;
   }
