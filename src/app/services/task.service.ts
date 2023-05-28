@@ -14,5 +14,6 @@ export class TaskService {
 
   gettaskList() {
     return this.taskList;
- }
+  }
 }
+

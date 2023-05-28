@@ -6,6 +6,7 @@ import { AddCardModule } from 'src/app/components/add-card/add-card.module';
 import { UtilityService } from 'src/app/services/utility.service';
 import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/models/Task.model'
+import { TaskEventData } from 'src/app/models/TaskEventData';
 
 describe('CardItemComponent', () => {
   let component: CardItemComponent;
@@ -45,6 +46,19 @@ describe('CardItemComponent', () => {
     taskService.taskList.push(initialTaskList);
     fixture.detectChanges();
     expect(component.taskList.length).toBe(1);
+
+    const taskListElements = fixture.nativeElement.querySelectorAll('.taskList');
+    expect(taskListElements.length).toBe(taskService.taskList.length);
+  });
+
+  it('should delete task when dataJob is DELETE_TODO', () => {
+    const initialTaskList: Task = { name: 'Task 3', id: 3, done: false, startDate: Date.now()};
+    taskService.taskList.push(initialTaskList);
+    fixture.detectChanges();
+    const eventData: TaskEventData = { index: initialTaskList.id, dataJob: utilityService.DELETE_TODO };
+    component.handleTaskButtonClick(eventData);
+    fixture.detectChanges();
+    expect(component.taskList.length).toBe(0);
 
     const taskListElements = fixture.nativeElement.querySelectorAll('.taskList');
     expect(taskListElements.length).toBe(taskService.taskList.length);

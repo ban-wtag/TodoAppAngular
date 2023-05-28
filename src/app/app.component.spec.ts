@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { AppComponent } from 'src/app/app.component';
 import { NavbarModule } from 'src/app/components/navbar/navbar.module';
 import { MenuModule } from 'src/app/components/menu/menu.module';
 import { CardItemModule } from 'src/app/components/card-item/card-item.module';

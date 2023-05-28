@@ -9,12 +9,13 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:prettier/recommended"
+        "plugin:@angular-eslint/template/process-inline-templates"
       ],
-      "plugins": ["import", "prettier"],
+      "plugins": ["import"],
       "rules": {
+        "indent": [2, 2, {"SwitchCase": 1}],
         "import/newline-after-import": ["error", { "count": 1 }],
+        "array-element-newline": ["error", "consistent"],
         "padding-line-between-statements": [
           "error",
           { "blankLine": "always", "prev": "*", "next": "export" },
