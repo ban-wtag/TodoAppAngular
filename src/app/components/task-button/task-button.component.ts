@@ -67,6 +67,9 @@ export class TaskButtonComponent implements OnInit {
  }
 
  visibilityHandle({dataJob}: {dataJob: any}, task: Task): boolean {
+   if (!task) {
+     return false;
+   }
    switch (dataJob) {
      case this.utilityService.EDIT:
        return !!task.showEditButton;
