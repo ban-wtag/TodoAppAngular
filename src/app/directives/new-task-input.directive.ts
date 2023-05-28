@@ -10,6 +10,6 @@ export class NewTaskInputDirective implements AfterViewInit{
     this.focus();
   }
   focus(): void {
-     this.renderer.selectRootElement(this.elementRef.nativeElement).focus();
+    this.renderer.selectRootElement(this.elementRef.nativeElement).focus();
   }
 }

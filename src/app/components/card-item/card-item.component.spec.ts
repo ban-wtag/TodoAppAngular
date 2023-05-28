@@ -49,5 +49,4 @@ describe('CardItemComponent', () => {
     const taskListElements = fixture.nativeElement.querySelectorAll('.taskList');
     expect(taskListElements.length).toBe(taskService.taskList.length);
   });
-
 });
