@@ -44,7 +44,7 @@ describe('CardItemComponent', () => {
     const initialTaskList: Task = { name: 'Task 1', id: 1, done: false, startDate: Date.now()};
     taskService.taskList.push(initialTaskList);
     fixture.detectChanges();
-    expect(component.taskService.taskList.length).toBe(1);
+    expect(component.taskList.length).toBe(1);
 
     const taskListElements = fixture.nativeElement.querySelectorAll('.taskList');
     expect(taskListElements.length).toBe(taskService.taskList.length);

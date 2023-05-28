@@ -11,24 +11,16 @@ import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directi
 })
 
 export class AddCardComponent implements OnDestroy {
-
-  utilityService: UtilityService;
-  taskService: TaskService;
   constructor(
-    utilityService: UtilityService,
-    taskService: TaskService
-  ) {
-    this.utilityService = utilityService;
-    this.taskService = taskService
-  }
+   private utilityService: UtilityService,
+   private taskService: TaskService
+  ) {}
 
   @ViewChild(NewTaskInputDirective)
   newTaskInputDirective!: NewTaskInputDirective;
-
   task: Task = new Task();
   newTask = '';
   tasks: string[] = [];
-  timeoutId!: ReturnType<typeof setTimeout> 
 
   onAddTaskToTaskList() {
     this.newTask = this.newTask.replace(/(<([^>]+)>)/g, "").trim();
@@ -44,14 +36,8 @@ export class AddCardComponent implements OnDestroy {
       this.newTask = '';
       this.utilityService.show = false;
     } else {
-      this.setFocusWithTimeout();
+      this.utilityService.setFocusWithTimeout(this.newTaskInputDirective);
     }
-  }
- 
-  setFocusWithTimeout(): void {
-    this.timeoutId = setTimeout(() => {
-       this.newTaskInputDirective.focus();
-    }, 0);
   }
 
   onResetInput() {
@@ -59,13 +45,7 @@ export class AddCardComponent implements OnDestroy {
     this.newTask = '';
   }
 
-  clearTimeout(): void {
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId);
-    }
-  }
-
   ngOnDestroy(): void {
-    this.clearTimeout();
+    this.utilityService.clearTimeout();
   }
 }

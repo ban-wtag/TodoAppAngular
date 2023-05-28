@@ -11,4 +11,8 @@ export class TaskService {
   addTaskToTaskList(taskList: Task) {
     this.taskList.unshift(taskList);
   }
+
+  gettaskList() {
+    return this.taskList;
+ }
 }
