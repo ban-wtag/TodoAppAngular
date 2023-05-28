@@ -41,7 +41,7 @@ describe('CardItemComponent', () => {
   });
 
   it('should render exact number of tasks', () => {
-    const initialTaskList: Task = { name: 'Task 1', id: 1, done: false, edit: false, trash: false, startDate: Date.now()};
+    const initialTaskList: Task = { name: 'Task 1', id: 1, done: false, startDate: Date.now()};
     taskService.taskList.push(initialTaskList);
     fixture.detectChanges();
     expect(component.taskService.taskList.length).toBe(1);

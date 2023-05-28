@@ -18,11 +18,11 @@ describe('TaskService', () => {
   });
 
   it('should add a task at the beginning of the task list', () => {
-    const initialTaskList: Task = { name: 'Task 1', id: 1, done: false, edit: false, trash: false, startDate: Date.now()};
+    const initialTaskList: Task = { name: 'Task 1', id: 1, done: false, startDate: Date.now()};
     service.taskList.push(initialTaskList);
     const initialTaskLength = service.taskList.length;
 
-    const tasks: Task = { name: 'Task 0', id: 0, done: false, edit: false, trash: false, startDate: Date.now() };
+    const tasks: Task = { name: 'Task 0', id: 0, done: false, startDate: Date.now() };
     service.addTaskToTaskList(tasks);
 
     const updatedTaskList = service.taskList;
@@ -33,7 +33,7 @@ describe('TaskService', () => {
   });
 
   it('should add a task to the task list', () => {
-    const task: Task = { name: 'Task 3', id: 3, done: false, edit: false, trash: false, startDate: Date.now() };
+    const task: Task = { name: 'Task 3', id: 3, done: false, startDate: Date.now() };
     service.addTaskToTaskList(task);
     const updatedTaskList = service.taskList;
 

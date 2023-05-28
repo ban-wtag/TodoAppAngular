@@ -10,7 +10,6 @@ import { Button } from 'src/app/models/Button.model';
 })
 
 export class TaskButtonComponent implements OnInit {
- @Input()id  = 0;
 
  utilityService: UtilityService;
  taskService: TaskService
@@ -33,21 +32,18 @@ export class TaskButtonComponent implements OnInit {
         label: 'COMPLETE',
         src: 'assets/icons/done.svg',
         dataJob: this.utilityService.COMPLETE,
-        id: this.id,
         ngstyle: { display: 'inline-block' },
       },
       {
         label: 'EDIT',
         src: 'assets/icons/edit.svg',
         dataJob: this.utilityService.EDIT,
-        id: this.id,
         ngstyle: { display: 'inline-block' },
       },
       {
         label: 'DELETE',
         src: 'assets/icons/delete.svg',
         dataJob: this.utilityService.DELETE_TODO,
-        id: this.id,
         ngstyle: { display: 'inline-block' },
       }
     ].map((button) => ({ ...button }));
