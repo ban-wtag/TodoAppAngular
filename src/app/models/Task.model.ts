@@ -3,7 +3,7 @@ export class Task {
   id = 0;
   done = false;
   startDate: number = Date.now();
-
+  
   private static currentId = 0;
 
   constructor() {

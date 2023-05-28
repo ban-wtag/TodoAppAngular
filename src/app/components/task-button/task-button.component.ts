@@ -14,6 +14,7 @@ import { Task } from 'src/app/models/Task.model';
 export class TaskButtonComponent implements OnInit {
  @Output() taskButtonClick = new EventEmitter<TaskEventData>();
  @Input()id = 0;
+
  utilityService: UtilityService;
  taskService: TaskService
  constructor(
@@ -29,7 +30,6 @@ export class TaskButtonComponent implements OnInit {
  }
 
  buttonGroup: Button[] = [];
-
  addNewTaskButton(): void {
    this.buttonGroup = [
      {
@@ -54,7 +54,6 @@ export class TaskButtonComponent implements OnInit {
  }
 
  onTaskButtonClick({index, dataJob} : TaskEventData): void {
-   console.log("index ", index);
    switch (dataJob) {
      case this.utilityService.DELETE_TODO:
        this.taskButtonClick.emit({index, dataJob});
