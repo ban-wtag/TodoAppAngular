@@ -5,6 +5,7 @@ import { TaskService } from 'src/app/services/task.service';
 import { UtilityService } from 'src/app/services/utility.service';
 import { AddCardComponent } from '../add-card/add-card.component';
 import { TaskEventData } from 'src/app/models/TaskEventData';
+// import { Button } from 'src/app/models/Button.model';
 
 @Component({
   selector: 'app-card-item',
@@ -25,13 +26,15 @@ export class CardItemComponent {
   TODAY: Date = new Date();
   formattedDate = formatDate(this.TODAY, 'dd.MM.yy', 'en-GB');
 
-  handleTaskButtonClick({id, dataJob}: TaskEventData): void {
-    const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
-
-    if (taskIndex < 0 && dataJob !== this.utilityService.DELETE_TODO) {
+  handleTaskButtonClick(event: TaskEventData): void {
+    //const taskIndex = this.taskService.taskList.findIndex(task => task.name === button.label);
+    const taskIndex = this.taskService.taskList.findIndex(task => task.id === event.index);
+    // const taskIndex = event.index;
+    console.log("taskIndex ", taskIndex);
+    if (event.dataJob !== this.utilityService.DELETE_TODO) {
       return;
     }
-
+    console.log(this.taskService.taskList, taskIndex);
     this.taskService.taskList.splice(taskIndex, 1);
   }
 

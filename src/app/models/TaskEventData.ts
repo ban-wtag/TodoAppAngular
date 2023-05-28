@@ -1,5 +1,7 @@
+import { Button } from 'src/app/models/Button.model';
+
 export interface TaskEventData {
-    id: number;
+    index: number;
     dataJob: string;
   }
   
