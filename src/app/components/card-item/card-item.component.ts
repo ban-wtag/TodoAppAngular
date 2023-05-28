@@ -3,7 +3,6 @@ import { Task } from 'src/app/models/Task.model';
 import { formatDate } from '@angular/common';
 import { TaskService } from 'src/app/services/task.service';
 import { UtilityService } from 'src/app/services/utility.service';
-import { AddCardComponent } from '../add-card/add-card.component';
 import { TaskEventData } from 'src/app/models/TaskEventData';
 
 @Component({
@@ -13,20 +12,17 @@ import { TaskEventData } from 'src/app/models/TaskEventData';
 })
 
 export class CardItemComponent {
-  taskService: TaskService;
-  utilityService: UtilityService;
 
-  constructor(taskService: TaskService, utilityService: UtilityService){
-    this.taskService = taskService;
-    this.utilityService = utilityService;
-  }
-  @ViewChild(AddCardComponent) comp!: AddCardComponent;
+  constructor(private taskService: TaskService, private utilityService: UtilityService){}
+  
   @Input() taskLists: Task[] = [];
 
   task: Task = new Task();
   TODAY: Date = new Date();
   formattedDate = formatDate(this.TODAY, 'dd.MM.yy', 'en-GB');
   endDate!: number;
+  taskList = this.taskService.gettaskList();
+  utility = this.utilityService;
 
   onCompleteTask(taskIndex: number){
     this.taskService.taskList[taskIndex].done = true;
@@ -40,8 +36,8 @@ export class CardItemComponent {
   }
 
 
-  handleTaskButtonClick({id, dataJob}: TaskEventData): void {
-    const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
+  handleTaskButtonClick({index, dataJob}: TaskEventData): void {
+    const taskIndex = this.taskService.taskList.findIndex(task => task.id === index);
 
     switch (dataJob) {
       case this.utilityService.COMPLETE:

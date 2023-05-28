@@ -22,12 +22,11 @@ describe('TaskService', () => {
       name: 'Task 1', 
       id: 1, 
       done: false, 
-      edit: false, 
-      trash: false, 
       startDate: Date.now(), 
       showCompleteButton: true,
       showDeleteButton: true,
-      showEditButton: true};
+      showEditButton: true,
+    };
 
     service.taskList.push(initialTaskList);
     const initialTaskLength = service.taskList.length;
@@ -36,12 +35,11 @@ describe('TaskService', () => {
       name: 'Task 0', 
       id: 0, 
       done: false, 
-      edit: false, 
-      trash: false, 
       startDate: Date.now(), 
       showCompleteButton: true,
       showDeleteButton: true,
-      showEditButton: true};
+      showEditButton: true,
+    };
 
     service.addTaskToTaskList(tasks);
 
@@ -57,8 +55,6 @@ describe('TaskService', () => {
       name: 'Task 3', 
       id: 3, 
       done: false, 
-      edit: false, 
-      trash: false, 
       startDate: Date.now(), 
       showCompleteButton: true,
       showDeleteButton: true,
@@ -70,6 +66,5 @@ describe('TaskService', () => {
     expect(updatedTaskList.length).toBe(1);
     expect(updatedTaskList[0]).toEqual(task);
   });
-
 });
 

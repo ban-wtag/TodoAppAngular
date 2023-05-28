@@ -37,34 +37,31 @@ export class TaskButtonComponent implements OnInit {
        label: 'COMPLETE',
        src: 'assets/icons/done.svg',
        dataJob: this.utilityService.COMPLETE,
-       id: this.id,
        ngstyle: { display: 'inline-block' },
      },
      {
        label: 'EDIT',
        src: 'assets/icons/edit.svg',
        dataJob: this.utilityService.EDIT,
-       id: this.id,
        ngstyle: { display: 'inline-block' },
      },
      {
        label: 'DELETE',
        src: 'assets/icons/delete.svg',
        dataJob: this.utilityService.DELETE_TODO,
-       id: this.id,
        ngstyle: { display: 'inline-block' },
      }
    ].map((button) => ({ ...button }));
  }
 
- onTaskButtonClick({ dataJob, id }: TaskEventData): void {
+ onTaskButtonClick({index, dataJob} : TaskEventData): void {
    switch (dataJob) {
      case this.utilityService.COMPLETE:    
-       this.taskButtonClick.emit({id, dataJob});
+       this.taskButtonClick.emit({index, dataJob});
        break;
 
      case this.utilityService.DELETE_TODO:
-       this.taskButtonClick.emit({ id, dataJob });
+       this.taskButtonClick.emit({index, dataJob});
        break;
    }
  }

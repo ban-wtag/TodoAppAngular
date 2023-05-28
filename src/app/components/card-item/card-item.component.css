@@ -1,5 +1,4 @@
-.date,
-.duration{
+.date {
   position: relative;
   font-size: 14px;
   line-height: 16px;
@@ -34,5 +33,32 @@
 .text.completed {
   text-decoration: line-through;
   color: green;
+}
+
+.duration{
+  display: inline-block;
+  background-color: #7A8DFD;
+  color: white;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  
+  line-height: 14px;
+  border-radius: 5px;
+  width: 134px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-after-completion{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grid-after-completion > div {
+ margin: 0;
 }
 
