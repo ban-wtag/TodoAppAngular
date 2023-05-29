@@ -13,7 +13,7 @@ import { TaskEventData } from 'src/app/models/TaskEventData';
 
 export class TaskButtonComponent implements OnInit {
  @Input()id  = 0;
- @Input() task: any;
+ @Input() task: Task = new Task();
  @Output() taskButtonClick = new EventEmitter<TaskEventData>();
 
  utilityService: UtilityService;
@@ -37,19 +37,16 @@ export class TaskButtonComponent implements OnInit {
        label: 'COMPLETE',
        src: 'assets/icons/done.svg',
        dataJob: this.utilityService.COMPLETE,
-       ngstyle: { display: 'inline-block' },
      },
      {
        label: 'EDIT',
        src: 'assets/icons/edit.svg',
        dataJob: this.utilityService.EDIT,
-       ngstyle: { display: 'inline-block' },
      },
      {
        label: 'DELETE',
        src: 'assets/icons/delete.svg',
        dataJob: this.utilityService.DELETE_TODO,
-       ngstyle: { display: 'inline-block' },
      }
    ].map((button) => ({ ...button }));
  }
@@ -63,22 +60,6 @@ export class TaskButtonComponent implements OnInit {
      case this.utilityService.DELETE_TODO:
        this.taskButtonClick.emit({index, dataJob});
        break;
-   }
- }
-
- visibilityHandle({dataJob}: {dataJob: any}, task: Task): boolean {
-   if (!task) {
-     return false;
-   }
-   switch (dataJob) {
-     case this.utilityService.EDIT:
-       return !!task.showEditButton;
-     case this.utilityService.DELETE_TODO:
-       return !!task.showDeleteButton;
-     case this.utilityService.COMPLETE:
-       return !!task.showCompleteButton;
-     default:
-       return false;
    }
  }
 }

@@ -22,10 +22,7 @@ describe('TaskService', () => {
       name: 'Task 1', 
       id: 1, 
       done: false, 
-      startDate: Date.now(), 
-      showCompleteButton: true,
-      showDeleteButton: true,
-      showEditButton: true,
+      startDate: Date.now(),
     };
 
     service.taskList.push(initialTaskList);
@@ -35,10 +32,7 @@ describe('TaskService', () => {
       name: 'Task 0', 
       id: 0, 
       done: false, 
-      startDate: Date.now(), 
-      showCompleteButton: true,
-      showDeleteButton: true,
-      showEditButton: true,
+      startDate: Date.now(),
     };
 
     service.addTaskToTaskList(tasks);
@@ -56,9 +50,7 @@ describe('TaskService', () => {
       id: 3, 
       done: false, 
       startDate: Date.now(), 
-      showCompleteButton: true,
-      showDeleteButton: true,
-      showEditButton: true};
+    };
       
     service.addTaskToTaskList(task);
     const updatedTaskList = service.taskList;

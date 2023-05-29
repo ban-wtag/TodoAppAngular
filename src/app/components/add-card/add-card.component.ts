@@ -29,9 +29,6 @@ export class AddCardComponent implements OnDestroy {
         id: this.task.id,
         done: this.task.done,
         startDate: Date.now(),
-        showCompleteButton: this.task.showCompleteButton,
-        showDeleteButton: this.task.showDeleteButton,
-        showEditButton: this.task.showEditButton,
       };
       this.taskService.addTaskToTaskList(newlyCreatedTask);
       this.newTask = '';

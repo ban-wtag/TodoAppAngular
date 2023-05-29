@@ -47,9 +47,6 @@ describe('CardItemComponent', () => {
       id: 1,
       done: false,
       startDate: Date.now(),
-      showCompleteButton: true,
-      showDeleteButton: true,
-      showEditButton: true,
     };
     
     taskService.taskList.push(initialTaskList);
@@ -67,9 +64,6 @@ describe('CardItemComponent', () => {
       id: 3,
       done: false,
       startDate: Date.now(),
-      showCompleteButton: true,
-      showDeleteButton: true,
-      showEditButton: true,
     };
 
     taskService.taskList.push(initialTaskList);
@@ -93,9 +87,6 @@ describe('CardItemComponent', () => {
       id: 3,
       done: false,
       startDate: Date.now(),
-      showCompleteButton: true,
-      showDeleteButton: true,
-      showEditButton: true,
     };
 
     taskService.taskList.push(task);

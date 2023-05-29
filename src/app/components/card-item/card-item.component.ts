@@ -26,15 +26,12 @@ export class CardItemComponent {
 
   onCompleteTask(taskIndex: number){
     this.taskService.taskList[taskIndex].done = true;
-    this.taskService.taskList[taskIndex].showCompleteButton = false;
-    this.taskService.taskList[taskIndex].showEditButton = false;  
   }
 
   calculateDuration(startDate: number): number{
     this.endDate = Date.now();
     return Math.floor(Math.abs((this.endDate - startDate)/this.utilityService.MS_PER_DAY) + 1);
   }
-
 
   handleTaskButtonClick({index, dataJob}: TaskEventData): void {
     const taskIndex = this.taskService.taskList.findIndex(task => task.id === index);
