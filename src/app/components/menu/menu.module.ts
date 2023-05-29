@@ -10,4 +10,5 @@ import { CreateButtonModule } from 'src/app/components/create-button/create-butt
   providers: [],
   exports: [MenuComponent],
 })
+
 export class MenuModule {}

@@ -19,7 +19,6 @@ export class AddCardComponent implements OnDestroy {
   @ViewChild(NewTaskInputDirective) newTaskInputDirective!: NewTaskInputDirective;
   task: Task = new Task();
   newTask = '';
-  tasks: string[] = [];
 
   onAddTaskToTaskList() {
     this.newTask = this.newTask.replace(/(<([^>]+)>)/g, "").trim();

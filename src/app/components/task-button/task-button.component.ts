@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { UtilityService } from 'src/app/services/utility.service';
 import { TaskService } from 'src/app/services/task.service';
+import { Task } from 'src/app/models/Task.model';
 import { Button } from 'src/app/models/Button.model';
 import { TaskEventData } from 'src/app/models/TaskEventData';
-import { Task } from 'src/app/models/Task.model';
 
 @Component({
   selector: 'app-task-button',
@@ -12,8 +12,9 @@ import { Task } from 'src/app/models/Task.model';
 })
 
 export class TaskButtonComponent implements OnInit {
+ @Input()id  = 0;
+ @Input() task: Task = new Task();
  @Output() taskButtonClick = new EventEmitter<TaskEventData>();
- @Input()id = 0;
 
  utilityService: UtilityService;
  taskService: TaskService
@@ -36,25 +37,26 @@ export class TaskButtonComponent implements OnInit {
        label: 'COMPLETE',
        src: 'assets/icons/done.svg',
        dataJob: this.utilityService.COMPLETE,
-       ngstyle: { display: 'inline-block' },
      },
      {
        label: 'EDIT',
        src: 'assets/icons/edit.svg',
        dataJob: this.utilityService.EDIT,
-       ngstyle: { display: 'inline-block' },
      },
      {
        label: 'DELETE',
        src: 'assets/icons/delete.svg',
        dataJob: this.utilityService.DELETE_TODO,
-       ngstyle: { display: 'inline-block' },
      }
    ].map((button) => ({ ...button }));
  }
 
  onTaskButtonClick({index, dataJob} : TaskEventData): void {
    switch (dataJob) {
+     case this.utilityService.COMPLETE:    
+       this.taskButtonClick.emit({index, dataJob});
+       break;
+
      case this.utilityService.DELETE_TODO:
        this.taskButtonClick.emit({index, dataJob});
        break;

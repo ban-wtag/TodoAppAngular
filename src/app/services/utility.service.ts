@@ -10,6 +10,8 @@ export class UtilityService {
   COMPLETE = 'complete';
   EDIT = 'edit';
   DELETE_TODO = 'delete';
+  APP_TITLE = 'Add Tasks';
+  MS_PER_DAY = 86400000;
 
   timeoutId!: ReturnType<typeof setTimeout> 
   setFocusWithTimeout(newTaskInputDirective: NewTaskInputDirective): void {
