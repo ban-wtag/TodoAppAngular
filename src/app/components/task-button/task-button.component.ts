@@ -13,7 +13,7 @@ import { TaskEventData } from 'src/app/models/TaskEventData';
 
 export class TaskButtonComponent implements OnInit {
  @Input()id  = 0;
- @Input() task: any;
+ @Input() task: Task = new Task();
  @Output() taskButtonClick = new EventEmitter<TaskEventData>();
 
  utilityService: UtilityService;
@@ -37,86 +37,76 @@ export class TaskButtonComponent implements OnInit {
        label: 'COMPLETE',
        src: 'assets/icons/done.svg',
        dataJob: this.utilityService.COMPLETE,
-       id: this.id,
-       ngstyle: { display: 'inline-block' },
+       content:  `<img src="assets/icons/done.svg" alt="${ this.utilityService.COMPLETE }"/>`,
      },
      {
        label: 'EDIT',
        src: 'assets/icons/edit.svg',
        dataJob: this.utilityService.EDIT,
-       id: this.id,
-       ngstyle: { display: 'inline-block' },
+       content:  `<img src="assets/icons/edit.svg" alt="${ this.utilityService.EDIT }"/>`,
      },
      {
        label: 'DELETE',
        src: 'assets/icons/delete.svg',
        dataJob: this.utilityService.DELETE_TODO,
-       id: this.id,
-       ngstyle: { display: 'inline-block' },
+       content:  `<img src="assets/icons/delete.svg" alt="${ this.utilityService.DELETE_TODO }"/>`,
      },
      {
        label: 'SAVE',
        src: 'assets/icons/logo.svg',
        dataJob: this.utilityService.SAVE,
-       id: this.id,
-       ngstyle: { display: 'inline-block' },
+       content: `Save`,
      },
      {
        label: 'COMPLETE_AFTER_EDIT',
        src: 'assets/icons/done.svg',
        dataJob: this.utilityService.COMPLETE_AFTER_EDIT,
-       id: this.id,
-       ngstyle: { display: 'inline-block' },
+       content:    `<img src="assets/icons/done.svg" alt="${ this.utilityService.COMPLETE_AFTER_EDIT }"/>`,
      },
      {
        label: 'REVERT',
        src: 'assets/icons/delete.svg',
        dataJob: this.utilityService.REVERT,
-       id: this.id,
-       ngstyle: { display: 'inline-block' },
+       content:  `<img src="assets/icons/delete.svg" alt="${ this.utilityService.REVERT}"/>`,
+
      }
    ].map((button) => ({ ...button }));
  }
 
- onTaskButtonClick({ dataJob, id }: TaskEventData): void {
-   switch (dataJob) {
-     case this.utilityService.COMPLETE:   
-       this.taskButtonClick.emit({id, dataJob});
-       break;
-     case this.utilityService.DELETE_TODO:
-       this.taskButtonClick.emit({id, dataJob});
-       break;
-     case this.utilityService.EDIT:
-       this.taskButtonClick.emit({id, dataJob});
-       break;
-     case this.utilityService.COMPLETE_AFTER_EDIT:
-       this.taskButtonClick.emit({id, dataJob});
-       break;
-     case this.utilityService.SAVE:
-       this.taskButtonClick.emit({id, dataJob});
-       break;
-     case this.utilityService.REVERT:
-       this.taskButtonClick.emit({id, dataJob});
-       break;
+ getButtonClasses(button: any): string[] {
+   const classes = ['taskButtonStyle'];
+   if (!this.task.editable && ['delete', 'edit', 'complete'].indexOf(button.dataJob) === -1) {
+     classes.push('hidden');
    }
+   if (this.task.done && button.dataJob !== 'delete') {
+     classes.push('hidden');
+   }
+   if (this.task.editable && ['save', 'revert', 'completeAfterEdit'].indexOf(button.dataJob) === -1) {
+     classes.push('hidden');
+   }
+   return classes;
  }
 
- visibilityHandle({dataJob}: {dataJob: any}, task: Task): boolean {
+ onTaskButtonClick({index, dataJob} : TaskEventData): void {
    switch (dataJob) {
-     case this.utilityService.EDIT:
-       return !!task.showEditButton;
+     case this.utilityService.COMPLETE:    
+       this.taskButtonClick.emit({index, dataJob});
+       break;
      case this.utilityService.DELETE_TODO:
-       return !!task.showDeleteButton;
-     case this.utilityService.COMPLETE:
-       return !!task.showCompleteButton;
-     case this.utilityService.REVERT:
-       return !!task.showRevertButton;
-     case this.utilityService.SAVE:
-       return !!task.showSaveButton;
+       this.taskButtonClick.emit({index, dataJob});
+       break;
+     case this.utilityService.EDIT:
+       this.taskButtonClick.emit({index, dataJob});
+       break;
      case this.utilityService.COMPLETE_AFTER_EDIT:
-       return !!task.showSaveButton;
-     default:
-       return false;
+       this.taskButtonClick.emit({index, dataJob});
+       break;
+     case this.utilityService.SAVE:
+       this.taskButtonClick.emit({index, dataJob});
+       break;
+     case this.utilityService.REVERT:
+       this.taskButtonClick.emit({index, dataJob});
+       break;
    }
  }
 }

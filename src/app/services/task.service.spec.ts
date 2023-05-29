@@ -21,18 +21,9 @@ describe('TaskService', () => {
     const initialTaskList: Task = { 
       name: 'Task 1', 
       id: 1, 
-      done: false, 
-      edit: false, 
-      trash: false, 
+      done: false,
       editable: false,
-      errorMessage: '',
-      startDate: Date.now(), 
-      showCompleteButton: true,
-      showDeleteButton: true,
-      showEditButton: true,
-      showRevertButton: false,
-      showSaveButton: false,
-      showCompleteAfterEditButton: false,
+      startDate: Date.now(),
     };
 
     service.taskList.push(initialTaskList);
@@ -42,17 +33,8 @@ describe('TaskService', () => {
       name: 'Task 0', 
       id: 0, 
       done: false, 
-      edit: false, 
-      trash: false, 
       editable: false,
-      errorMessage: '',
       startDate: Date.now(), 
-      showCompleteButton: true,
-      showDeleteButton: true,
-      showEditButton: true,
-      showRevertButton: false,
-      showSaveButton: false,
-      showCompleteAfterEditButton: false,
     };
 
     service.addTaskToTaskList(tasks);
@@ -69,17 +51,8 @@ describe('TaskService', () => {
       name: 'Task 1', 
       id: 1, 
       done: false, 
-      edit: false, 
-      trash: false, 
       editable: false,
-      errorMessage: '',
       startDate: Date.now(), 
-      showCompleteButton: true,
-      showDeleteButton: true,
-      showEditButton: true,
-      showRevertButton: false,
-      showSaveButton: false,
-      showCompleteAfterEditButton: false,
     };
       
     service.addTaskToTaskList(task);
@@ -88,6 +61,5 @@ describe('TaskService', () => {
     expect(updatedTaskList.length).toBe(1);
     expect(updatedTaskList[0]).toEqual(task);
   });
-
 });
 

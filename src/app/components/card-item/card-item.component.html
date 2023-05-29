@@ -1,14 +1,36 @@
 <div class="grid-container">
-  <div *ngIf="utilityService.show" class="inputBoxContainer">
-    <app-add-card ></app-add-card>
+  <div *ngIf="utility.show" class="inputBoxContainer">
+    <app-add-card></app-add-card>
   </div>
-  <div *ngFor="let task of taskService.taskList" class="taskList" #errorMessage>
-    <p class="text" [id]="task.id" innerText="{{ task.name }}" [class.completed]="task.done"  [class.completed]="task.done"
-    [contentEditable]="task.editable"
-    #taskFocus></p>
+  <div *ngFor="let task of taskList" class="taskList" #errorMessage>
+    <p
+      class="text"
+      [id]="task.id"
+      innerText="{{ task.name }}"
+      [class.completed]="task.done"
+      [contentEditable]="task.editable"
+      #taskFocus
+    ></p>
     <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>
-    <app-task-button class="taskButton" [id]="task.id" [task]="task" (taskButtonClick)="handleTaskButtonClick($event)"></app-task-button>
-    <small innerText="{{task.errorMessage}}"></small>
-    <!-- <p *ngIf="task.done" class="duration" innerText = "Completed in {{ calculateDuration(task.startDate) }} day"></p> -->
+    <div class="grid-after-completion">
+      <div>
+        <app-task-button
+          class="taskButton"
+          [id]="task.id"
+          [task]="task"
+          (taskButtonClick)="handleTaskButtonClick($event)"
+        ></app-task-button>
+      </div>
+      <div>
+        <p
+          *ngIf="task.done"
+          class="duration"
+          innerText="Completed in {{
+            utility.calculateDuration(task.startDate)
+          }} day"
+        ></p>
+        <!-- <small innerText="{{task.errorMessage}}"></small> -->
+      </div>
+    </div>
   </div>
 </div>

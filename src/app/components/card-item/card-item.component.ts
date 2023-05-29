@@ -3,7 +3,6 @@ import { Task } from 'src/app/models/Task.model';
 import { formatDate } from '@angular/common';
 import { TaskService } from 'src/app/services/task.service';
 import { UtilityService } from 'src/app/services/utility.service';
-import { AddCardComponent } from '../add-card/add-card.component';
 import { TaskEventData } from 'src/app/models/TaskEventData';
 
 @Component({
@@ -12,15 +11,9 @@ import { TaskEventData } from 'src/app/models/TaskEventData';
   styleUrls: ['./card-item.component.css'],
 })
 
-export class CardItemComponent implements OnDestroy{
-  taskService: TaskService;
-  utilityService: UtilityService;
-
-  constructor(taskService: TaskService, utilityService: UtilityService){
-    this.taskService = taskService;
-    this.utilityService = utilityService;
-  }
-  @ViewChild(AddCardComponent) comp!: AddCardComponent;
+export class CardItemComponent implements OnDestroy {
+  constructor(private taskService: TaskService, private utilityService: UtilityService){}
+  
   @Input() taskLists: Task[] = [];
   @ViewChildren('taskFocus') taskFoused!: QueryList<ElementRef>
 
@@ -28,24 +21,11 @@ export class CardItemComponent implements OnDestroy{
   TODAY: Date = new Date();
   formattedDate = formatDate(this.TODAY, 'dd.MM.yy', 'en-GB');
   endDate!: number;
-  timeoutId1!: ReturnType<typeof setTimeout>;
   timeoutId2!: ReturnType<typeof setTimeout>;
-
-  propertiesToToggle: string[]= [
-    'editable',
-    'edit',
-    'showCompleteButton',
-    'showEditButton',
-    'showDeleteButton',
-    'showSaveButton',
-    'showCompleteAfterEditButton',
-    'showRevertButton'
-  ]
-
-  
+  taskList = this.taskService.gettaskList();
+  utility = this.utilityService;
 
   clearTimeout(): void {
-    this.timeoutId1 && clearTimeout(this.timeoutId1);
     this.timeoutId2 && clearTimeout(this.timeoutId2);
   }
   
@@ -59,58 +39,41 @@ export class CardItemComponent implements OnDestroy{
     const taskName = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
     if(!taskName){
       console.log("what ever in empty task on save", this.taskService.taskList);
-      this.taskService.taskList[taskIndex].errorMessage = 'Please add Description';
       this.onTaskFocused(taskIndex);
       return;
     }
     this.taskService.taskList[taskIndex].name = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
-    this.utilityService.toggleTaskProperties(taskIndex, ...this.propertiesToToggle);
-    this.taskService.taskList[taskIndex].errorMessage = '';
+    this.taskService.taskList[taskIndex].editable = false;
   }
 
   onRevertTask(taskIndex: number){
-    this.utilityService.toggleTaskProperties(taskIndex, ...this.propertiesToToggle);
     this.taskFoused.toArray()[taskIndex].nativeElement.innerText = this.taskService.taskList[taskIndex].name;
-    console.log("on Revert button ", this.taskService.taskList);
-    this.taskService.taskList[taskIndex].errorMessage = '';
+    this.taskService.taskList[taskIndex].editable = false;
   }
 
   onEditTask(taskIndex: number){
-    this.utilityService.toggleTaskProperties(taskIndex, ...this.propertiesToToggle);
     this.onTaskFocused(taskIndex);
-    console.log('on edit task ', this.taskService.taskList)
+    this.taskService.taskList[taskIndex].editable = true;
   }
 
   onCompleteTask(taskIndex: number){
-    this.taskService.taskList[taskIndex].name = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
-    this.utilityService.toggleTaskProperties(taskIndex, 'showCompleteButton', 'showEditButton', 'done');
-    this.taskService.taskList[taskIndex].errorMessage = '';
+    this.taskService.taskList[taskIndex].done = true;
   }
 
   onCompeteAfterEditTask(taskIndex: number){
     const taskName = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
     if(!taskName){
-      this.taskService.taskList[taskIndex].errorMessage = 'Please add Description';
       this.onTaskFocused(taskIndex);
       return;
     }
     this.taskService.taskList[taskIndex].name = this.taskFoused.toArray()[taskIndex].nativeElement.innerText;
-    const propertiesToToggles = [
-      'done',
-      'edit',
-      'editable',
-      'showCompleteAfterEditButton',
-      'showDeleteButton',
-      'showRevertButton',
-      'showSaveButton'
-    ]
-    this.utilityService.toggleTaskProperties(taskIndex, ...propertiesToToggles);
-    this.taskService.taskList[taskIndex].errorMessage = '';
-    console.log("on complete after task ",this.taskService.taskList);
+    this.taskService.taskList[taskIndex].editable = false;
+    this.taskService.taskList[taskIndex].done = true;
   }
 
-  handleTaskButtonClick({id, dataJob}: TaskEventData): void {
-    const taskIndex = this.taskService.taskList.findIndex(task => task.id === id);
+  handleTaskButtonClick({index, dataJob}: TaskEventData): void {
+    const taskIndex = this.taskService.taskList.findIndex(task => task.id === index);
+
     switch (dataJob) {
       case this.utilityService.COMPLETE:
         if (taskIndex >= 0) {
@@ -148,5 +111,5 @@ export class CardItemComponent implements OnDestroy{
   ngOnDestroy(): void {
     this.clearTimeout();
   }
-
 }
+

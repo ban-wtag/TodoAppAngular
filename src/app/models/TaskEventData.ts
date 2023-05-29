@@ -1,5 +1,5 @@
 export interface TaskEventData {
-    id: number;
+    index: number;
     dataJob: string;
   }
   

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
+import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directive';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,7 @@ import { TaskService } from 'src/app/services/task.service';
 
 export class UtilityService {
   show = false;
+  APP_TITLE = 'Add Tasks';
   TODAY: Date = new Date();
   endDate!: number;
   COMPLETE = 'complete';
@@ -15,11 +17,10 @@ export class UtilityService {
   REVERT = 'revert';
   SAVE = 'save';
   COMPLETE_AFTER_EDIT = 'completeAfterEdit';
-  APP_TITLE = 'Add Tasks';
   MS_PER_DAY = 86400000;
-  
-  taskService: TaskService;
+  timeoutId!: ReturnType<typeof setTimeout> 
 
+  taskService: TaskService;
   constructor(taskService: TaskService){
     this.taskService = taskService;
   }
@@ -34,5 +35,17 @@ export class UtilityService {
     propertyNames.forEach((propertyName) => {
       targetTask[propertyName] = !targetTask[propertyName];
     });
+  }
+  
+  setFocusWithTimeout(newTaskInputDirective: NewTaskInputDirective): void {
+    this.timeoutId = setTimeout(() => {
+      newTaskInputDirective.focus();
+    }, 0);
+  }
+
+  clearTimeout(): void {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
   }
 }
