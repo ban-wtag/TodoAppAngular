@@ -1,7 +1,8 @@
 <div class="grid-container">
-  <div *ngIf=" utility.show" class="inputBoxContainer">
-    <app-add-card ></app-add-card>
+  <div *ngIf="utility.show" class="inputBoxContainer">
+    <app-add-card></app-add-card>
   </div>
+
   <div *ngFor="let task of taskList" class="taskList">
     <p class="text" innerText="{{ task.name }}"></p>
     <div class="date" [id]="task.id">Created At: {{ formattedDate }}</div>

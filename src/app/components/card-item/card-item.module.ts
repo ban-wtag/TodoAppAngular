@@ -4,7 +4,6 @@ import { CardItemComponent } from 'src/app/components/card-item/card-item.compon
 import { TaskButtonModule } from 'src/app/components/task-button/task-button.module';
 import {AddCardModule} from 'src/app/components/add-card/add-card.module';
 
-
 @NgModule({
   declarations: [
     CardItemComponent
@@ -14,8 +13,6 @@ import {AddCardModule} from 'src/app/components/add-card/add-card.module';
     TaskButtonModule,
     AddCardModule
   ],
-  providers: [],
   exports: [CardItemComponent],
 })
-
 export class CardItemModule {}

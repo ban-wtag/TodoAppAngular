@@ -10,5 +10,4 @@ describe('NewTaskInputDirective', () => {
   it('should create an instance', () => {
     expect(directive).toBeTruthy();
   });
-
 });

@@ -4,7 +4,6 @@ import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directi
 @Injectable({
   providedIn: 'root',
 })
-
 export class UtilityService {
   show = false;
   COMPLETE = 'complete';

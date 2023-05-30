@@ -6,11 +6,9 @@ import { Button } from 'src/app/models/Button.model';
 @Component({
   selector: 'app-task-button',
   templateUrl: './task-button.component.html',
-  styleUrls: ['./task-button.component.css'],
+  styleUrls: ['./task-button.component.scss'],
 })
-
 export class TaskButtonComponent implements OnInit {
-
  utilityService: UtilityService;
  taskService: TaskService
   constructor(

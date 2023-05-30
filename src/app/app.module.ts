@@ -16,5 +16,4 @@ import { CardItemModule } from 'src/app/components/card-item/card-item.module';
   providers: [],
   bootstrap: [AppComponent],
 })
-
 export class AppModule {}

@@ -11,5 +11,4 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
   ],
   exports: [NavbarComponent],
 })
-
 export class NavbarModule {}

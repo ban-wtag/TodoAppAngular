@@ -7,13 +7,10 @@ import { UtilityService } from 'src/app/services/utility.service';
 @Component({
   selector: 'app-card-item',
   templateUrl: './card-item.component.html',
-  styleUrls: ['./card-item.component.css'],
+  styleUrls: ['./card-item.component.scss'],
 })
-
 export class CardItemComponent {
-
   constructor(private taskService: TaskService, private utilityService: UtilityService){}
-  
   @Input() taskLists: Task[] = [];
   TODAY: Date = new Date();
   formattedDate = formatDate(this.TODAY, 'dd.MM.yy', 'en-GB');

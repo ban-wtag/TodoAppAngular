@@ -7,5 +7,4 @@ import { NewTaskInputDirective } from './new-task-input.directive';
   imports: [CommonModule],
   exports: [NewTaskInputDirective],
 })
-
 export class NewTaskInputModule {}

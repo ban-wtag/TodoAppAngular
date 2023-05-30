@@ -4,7 +4,7 @@ import { UtilityService } from 'src/app/services/utility.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css'],
+  styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent {
   utilityService: UtilityService;

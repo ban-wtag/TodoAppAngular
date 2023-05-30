@@ -40,5 +40,4 @@ describe('TaskService', () => {
     expect(updatedTaskList.length).toBe(1);
     expect(updatedTaskList[0]).toEqual(task);
   });
-
 });
