@@ -1,26 +1,31 @@
-.navbar{
-  background: #ffffff;
+@import "src/styles/_variables.scss";
+@import "src/styles/_colors.scss";
+@import "src/styles/_reuse.scss";
+
+.navbar {
+  background: $primary-white;
 }
 
 .grid-navbar-item {
-  width: 80%;
-  display: flex;
-  margin: auto;
-  justify-content: space-between;
+  @extend %flex-shared;
 }
 
 .title {
-  color: #7a8dfd;
-  font-size: 36px;
+  color: $primary-blue;
+  line-height: 42px;
+  font: {
+    weight: 700;
+    size: $sp-36;
+  }
 }
 
-img.titleLogo{
-   position:relative;
-   top: 5px;
-   margin-right: 12px;
-}
-
-img.searchIcon{
-    position: relative;
-    top: 9px;
+img {
+  position: relative;
+  &.title-logo {
+    top: $sp-5;
+    margin-right: 13px;
+  }
+  &.search-icon {
+    top: $sp-10;
+  }
 }

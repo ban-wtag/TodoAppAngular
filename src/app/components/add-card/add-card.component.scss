@@ -1,26 +1,40 @@
-.filter ::ng-deep button{
-  margin-left:10px;
-}
+@import "src/styles/_variables.scss";
+@import "src/styles/_colors.scss";
+@import "src/styles/_reuse.scss";
 
-.fa-trash-alt {
-  color: rgba(109, 107, 107, 0.835);
-}
-
-.addTaskButton{
-  margin-right: 7px;
-}
-
-.inputBox {
-  border: 3px solid #DDE2FF;
-  box-sizing: border-box;
-  justify-content: center;
-  overflow: auto;
-  word-wrap: break-word;
-  width: 100%;
+.input-box {
+  @include task-container(0.188rem, 0rem);
   height: 64px;
-  padding: 0px;
-  margin: 0 0 10px 0;
-  border-radius: none;  
+  margin: 0 0 $sp-10 0;
+  border-radius: none;
   padding-left: 1rem;
 }
 
+.task-creator {
+  width: 100%;
+  display: flex;
+  margin: auto;
+}
+
+.add-task-button {
+  place-items: center;
+  border-radius: $sp-4;
+  width: 104px;
+  height: $sp-36;
+  display: grid;
+  border: 1px solid $primary-gray;
+  ::ng-deep button {
+    border: none;
+    border-radius: $sp-4;
+    background-color: $primary-white;
+  }
+}
+
+.reset-task {
+  margin-left: 8px;
+  ::ng-deep button {
+    background-color: $primary-white;
+    height: $sp-36;
+    border: none;
+  }
+}

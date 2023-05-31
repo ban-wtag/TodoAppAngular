@@ -1,8 +1,12 @@
+@import "src/styles/_variables.scss";
+@import "src/styles/_colors.scss";
+@import "src/styles/_reuse.scss";
+
 .date {
   position: relative;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 16px;
-  color: #BBBDD0
+  color: $primary-gray;
 }
 
 .grid-container {
@@ -12,22 +16,16 @@
   width: 80%;
   margin: auto;
   padding-top: 2.125rem;
+
+  > div {
+    @include task-container(0.125rem, 1rem);
+    background: $primary-white;
+  }
 }
 
-.grid-container > div {
-  border: 2px solid #DDE2FF;
-  box-sizing: border-box;
-  justify-content: center;
-  overflow: auto;
-  word-wrap: break-word;
-  width: 100%;
-  padding: 1rem; 
-  background: #ffffff;
+.text {
+  font: {
+    weight: 700;
+    size: 24px;
+  }
 }
-
-.text{
-  font-weight: 700;
-  font-size: 24px;
-}
-
-
