@@ -14,13 +14,13 @@
 .createButton ::ng-deep button {
   border-radius: $sp-5;
   border: none;
-  width: 104px;
+  width: 6.5rem;
   height: $sp-36;
   background-color: $primary-blue;
   color: $primary-white;
-  line-height: 19px;
+  line-height: 1.188rem;
   font: {
-    size: 16px;
+    size: 1rem;
     weight: 500;
   }
 }

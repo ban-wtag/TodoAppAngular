@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UtilityService } from 'src/app/services/utility.service';
 import { TaskService } from 'src/app/services/task.service';
 import { Button } from 'src/app/models/Button.model';
@@ -9,14 +9,10 @@ import { Button } from 'src/app/models/Button.model';
   styleUrls: ['./task-button.component.scss'],
 })
 export class TaskButtonComponent implements OnInit {
- utilityService: UtilityService;
- taskService: TaskService
-  constructor(
-    utilityService: UtilityService,
-    taskService: TaskService
-  ) {
-    this.utilityService = utilityService,
-    this.taskService = taskService
+  utilityService: UtilityService;
+  taskService: TaskService;
+  constructor(utilityService: UtilityService, taskService: TaskService) {
+    (this.utilityService = utilityService), (this.taskService = taskService);
   }
 
   ngOnInit(): void {
