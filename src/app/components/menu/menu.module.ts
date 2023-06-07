@@ -7,7 +7,6 @@ import { CreateButtonModule } from 'src/app/components/create-button/create-butt
 @NgModule({
   declarations: [MenuComponent],
   imports: [CommonModule, CreateButtonModule],
-  providers: [],
   exports: [MenuComponent],
 })
 export class MenuModule {}

@@ -2,30 +2,31 @@
 @import "src/styles/_colors.scss";
 @import "src/styles/_reuse.scss";
 
-.navbar {
-  background: $primary-white;
-}
-
 .grid-navbar-item {
   @extend %flex-shared;
 }
 
-.title {
-  color: $primary-blue;
-  line-height: 2.625rem;
-  font: {
-    weight: 700;
-    size: $sp-36;
-  }
-}
-
 img {
   position: relative;
-  &.title-logo {
-    top: $sp-5;
-    margin-right: 0.813rem;
-  }
   &.search-icon {
     top: $sp-10;
   }
+  &.title-logo {
+    margin-right: 0.813rem;
+    top: $sp-5;
+  }
 }
+
+.navbar {
+  background: $primary-white;
+}
+
+.title {
+  color: $primary-blue;
+  font: {
+    size: $sp-36;
+    weight: 700;
+  }
+  line-height: 2.625rem;
+}
+

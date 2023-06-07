@@ -2,39 +2,29 @@
 @import "src/styles/_colors.scss";
 @import "src/styles/_reuse.scss";
 
+.add-task-button {
+  border: 0.063rem solid $primary-gray;
+  border-radius: $sp-4;
+  display: grid;
+  height: $sp-36;
+  place-items: center;
+  width: 6.5rem;
+}
+
 .input-box {
   @include task-container(0.188rem, 0rem);
+  border-radius: none;
   height: 4rem;
   margin: 0 0 $sp-10 0;
-  border-radius: none;
   padding-left: 1rem;
-}
-
-.task-creator {
-  width: 100%;
-  display: flex;
-  margin: auto;
-}
-
-.add-task-button {
-  place-items: center;
-  border-radius: $sp-4;
-  width: 6.5rem;
-  height: $sp-36;
-  display: grid;
-  border: 0.063rem solid $primary-gray;
-  ::ng-deep button {
-    border: none;
-    border-radius: $sp-4;
-    background-color: $primary-white;
-  }
 }
 
 .reset-task {
   margin-left: 0.5rem;
-  ::ng-deep button {
-    background-color: $primary-white;
-    height: $sp-36;
-    border: none;
-  }
+}
+
+.task-creator {
+  display: flex;
+  margin: auto;
+  width: 100%;
 }

@@ -7,8 +7,9 @@ import { NewTaskInputDirective } from 'src/app/directives/new-task-input.directi
 export class UtilityService {
   show = false;
   COMPLETE = 'complete';
-  EDIT = 'edit';
   DELETE_TODO = 'delete';
+  EDIT = 'edit';
+  RESET = 'reset';
 
   timeoutId!: ReturnType<typeof setTimeout> 
   setFocusWithTimeout(newTaskInputDirective: NewTaskInputDirective): void {

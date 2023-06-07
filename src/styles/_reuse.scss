@@ -1,16 +1,28 @@
-%flex-shared {
-    width: 80%;
-    display: flex;
-    margin: auto;
-    justify-content: space-between;
+@mixin button-container($border-radius, $background-color, $height) {
+  border: none;
+  border-radius: $border-radius;
+  background-color: $background-color;
+  height: $height;
 }
 
-@mixin task-container ($border-width, $padding-all) {
-    border: $border-width solid #DDE2FF;
-    box-sizing: border-box;
-    justify-content: center;
-    overflow: auto;
-    word-wrap: break-word;
-    width: 100%;
-    padding: $padding-all;
+@mixin task-container($border-width, $padding-all) {
+  border: $border-width solid #dde2ff;
+  box-sizing: border-box;
+  justify-content: center;
+  overflow: auto;
+  word-wrap: break-word;
+  width: 100%;
+  padding: $padding-all;
+}
+
+%flex-shared {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
+
+@mixin fontFamily {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;  
 }

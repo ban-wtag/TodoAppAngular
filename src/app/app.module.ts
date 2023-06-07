@@ -7,13 +7,20 @@ import { NavbarModule } from 'src/app/components/navbar/navbar.module';
 import { MenuModule } from 'src/app/components/menu/menu.module';
 import { CardItemModule } from 'src/app/components/card-item/card-item.module';
 
-
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, NavbarModule, MenuModule, CardItemModule],
-  providers: [],
-  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    NavbarModule,
+    MenuModule,
+    CardItemModule
+  ],
+  bootstrap: [
+    AppComponent
+  ],
 })
 export class AppModule {}

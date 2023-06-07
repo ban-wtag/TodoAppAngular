@@ -7,20 +7,3 @@
   padding-top: 2.125rem;
 }
 
-.filter ::ng-deep button {
-  margin-left: $sp-10;
-}
-
-.createButton ::ng-deep button {
-  border-radius: $sp-5;
-  border: none;
-  width: 6.5rem;
-  height: $sp-36;
-  background-color: $primary-blue;
-  color: $primary-white;
-  line-height: 1.188rem;
-  font: {
-    size: 1rem;
-    weight: 500;
-  }
-}

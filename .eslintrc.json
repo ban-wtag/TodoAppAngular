@@ -3,7 +3,9 @@
   "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "extends": [
         "plugin:import/warnings",
         "eslint:recommended",
@@ -57,14 +59,6 @@
         "plugin:@angular-eslint/template/accessibility"
       ],
       "rules": {
-        "padding-line-between-statements": [
-          "error",
-          {
-            "blankLine": "always",
-            "prev": "multiline-expression",
-            "next": "export"
-          }
-        ]
       }
     }
   ]

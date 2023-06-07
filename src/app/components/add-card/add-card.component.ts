@@ -20,6 +20,7 @@ export class AddCardComponent implements OnDestroy {
   task: Task = new Task();
   newTask: string = '';
   tasks: string[] = [];
+  RESET =  this.utilityService.RESET;
 
   onAddTaskToTaskList() {
     this.newTask = this.newTask.replace(/(<([^>]+)>)/g, '').trim();

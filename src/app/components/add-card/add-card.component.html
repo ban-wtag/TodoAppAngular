@@ -1,13 +1,13 @@
 <input [(ngModel)]="newTask" appNewTaskInput class="input-box" />
 <div class="task-creator">
   <div class="add-task-button">
-    <app-create-button (click)="onAddTaskToTaskList()"
+    <app-create-button (click)="onAddTaskToTaskList()" class="add-task-button-style"
       >Add Task</app-create-button
     >
   </div>
   <div class="reset-task">
-    <app-create-button (click)="onResetInput()">
-      <img src="assets/icons/delete.svg" alt="reset" />
+    <app-create-button (click)="onResetInput()" class="reset-task-style">
+      <img src="assets/icons/delete.svg" alt={{RESET}} />
     </app-create-button>
   </div>
 </div>

@@ -3,21 +3,20 @@
 @import "src/styles/_reuse.scss";
 
 .date {
-  position: relative;
+  color: $primary-gray;
   font-size: 0.875rem;
   line-height: 1rem;
-  color: $primary-gray;
+  position: relative;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   gap: 2.125rem;
-  width: 80%;
+  grid-template-columns: 1fr 1fr 1fr;
   margin: auto;
   padding-top: 2.125rem;
-
-  > div {
+  width: 80%;
+  .inputBoxContainer, .taskList {
     @include task-container(0.125rem, 1rem);
     background: $primary-white;
   }
@@ -25,7 +24,7 @@
 
 .text {
   font: {
-    weight: 700;
     size: 1.5rem;
+    weight: 700;
   }
 }
