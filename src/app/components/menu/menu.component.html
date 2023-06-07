@@ -1,0 +1,13 @@
+<h2 innerText="{{ APP_TITLE }}" class="secondHeader"></h2>
+<div class="secondHeader">
+  <div class="create-button">
+    <app-create-button (clickEvent)="onShowInput()" class="create-button-style"
+      ><i class="fa-duotone fa-plus"></i>Create</app-create-button
+    >
+  </div>
+  <div class="filter">
+    <app-create-button class="filter-style">All</app-create-button>
+    <app-create-button class="filter-style">Incomplete</app-create-button>
+    <app-create-button class="filter-style">Complete</app-create-button>
+  </div>
+</div>

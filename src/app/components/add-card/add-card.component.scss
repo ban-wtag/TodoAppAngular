@@ -1,0 +1,30 @@
+@import "src/styles/_variables.scss";
+@import "src/styles/_colors.scss";
+@import "src/styles/_reuse.scss";
+
+.add-task-button {
+  border: 0.063rem solid $primary-gray;
+  border-radius: $sp-4;
+  display: grid;
+  height: $sp-36;
+  place-items: center;
+  width: 6.5rem;
+}
+
+.input-box {
+  @include task-container(0.188rem, 0rem);
+  border-radius: none;
+  height: 4rem;
+  margin: 0 0 $sp-10 0;
+  padding-left: 1rem;
+}
+
+.reset-task {
+  margin-left: 0.5rem;
+}
+
+.task-creator {
+  display: flex;
+  margin: auto;
+  width: 100%;
+}

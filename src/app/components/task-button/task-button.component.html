@@ -1,0 +1,8 @@
+<img
+  *ngFor="let button of buttonGroup"
+  [src]="button.src"
+  [attr.data-job]="button.dataJob"
+  [ngStyle]="button.ngstyle"
+  [alt]="button.label"
+  class="task-button-style"
+/>

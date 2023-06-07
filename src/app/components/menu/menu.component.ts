@@ -1,0 +1,20 @@
+import { Component } from '@angular/core';
+import { UtilityService } from 'src/app/services/utility.service';
+
+@Component({
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.scss'],
+})
+export class MenuComponent {
+  utilityService: UtilityService;
+  APP_TITLE = "Add Tasks";
+  
+  constructor(utilityService: UtilityService) { 
+    this.utilityService = utilityService;
+  }
+
+  onShowInput() {
+    this.utilityService.show = true;
+  }
+}

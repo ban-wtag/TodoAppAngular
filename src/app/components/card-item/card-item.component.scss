@@ -1,0 +1,30 @@
+@import "src/styles/_variables.scss";
+@import "src/styles/_colors.scss";
+@import "src/styles/_reuse.scss";
+
+.date {
+  color: $primary-gray;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  position: relative;
+}
+
+.grid-container {
+  display: grid;
+  gap: 2.125rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: auto;
+  padding-top: 2.125rem;
+  width: 80%;
+  .inputBoxContainer, .taskList {
+    @include task-container(0.125rem, 1rem);
+    background: $primary-white;
+  }
+}
+
+.text {
+  font: {
+    size: 1.5rem;
+    weight: 700;
+  }
+}

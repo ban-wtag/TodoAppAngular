@@ -1,0 +1,9 @@
+@import "src/styles/_variables.scss";
+@import "src/styles/_colors.scss";
+@import "src/styles/_reuse.scss";
+
+.secondHeader {
+  @extend %flex-shared;
+  padding-top: 2.125rem;
+}
+

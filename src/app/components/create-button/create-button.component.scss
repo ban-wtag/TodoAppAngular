@@ -1,0 +1,27 @@
+@import "src/styles/_variables.scss";
+@import "src/styles/_colors.scss";
+@import "src/styles/_reuse.scss";
+
+:host(.add-task-button-style) button {
+  @include button-container($sp-4, $primary-white, 1.188rem);
+}
+
+:host(.create-button-style) button {
+  @include button-container($sp-5, $primary-blue, $sp-36);
+  color: $primary-white;
+  font: {
+    size: 1rem;
+    weight: 500;
+  }
+  line-height: 1.188rem;
+  width: 6.5rem;
+  
+}
+
+:host(.filter-style) button {
+    margin-left: $sp-10;
+  }
+
+:host(.reset-task-style) button {
+  @include button-container($sp-4, $primary-white, $sp-36);
+}
